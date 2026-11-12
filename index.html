@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GWM Venezuela - Encuentra tu modelo ideal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ============ RESET & BASE ============ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gwm-red: #D6202A;
+      --gwm-dark: #1a1a1a;
+      --gwm-gray: #5E5D5E;
+      --gwm-light: #f8f8f8;
+      --gwm-white: #ffffff;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.08);
+      --radius: 14px;
+      --radius-sm: 10px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gwm-white);
+      color: var(--gwm-dark);
+      height: 100vh;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ============ LAYOUT ============ */
+    .app-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ============ HEADER / LOGO ============ */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      height: 36px;
+      transition: var(--transition);
+    }
+
+    .logo svg {
+      height: 100%;
+      width: auto;
+    }
+
+    /* ============ PROGRESS BAR ============ */
+    .progress-container {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gwm-light);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .progress-container.visible {
+      opacity: 1;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gwm-red), #ff4757);
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* ============ SCREENS ============ */
+    .screen {
+      display: none;
+      width: 100%;
+      max-width: 600px;
+      height: calc(100vh - 72px);
+      overflow: hidden;
+      animation: fadeSlideIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeSlideOut {
+      from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.97);
+      }
+    }
+
+    .screen.exiting {
+      animation: fadeSlideOut 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    /* ============ WELCOME SCREEN ============ */
+    .welcome-screen {
+      text-align: center;
+      gap: 20px;
+      padding-top: 72px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .welcome-hero {
+      width: 100%;
+      max-width: 360px;
+      height: 140px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      background: #1a1a1a;
+    }
+
+    .welcome-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .welcome-hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .welcome-hero-logo {
+      height: 60px;
+      filter: brightness(0) invert(1);
+    }
+
+    .welcome-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--gwm-dark);
+    }
+
+    .welcome-title span {
+      color: var(--gwm-red);
+    }
+
+    .welcome-subtitle {
+      font-size: 0.9rem;
+      color: var(--gwm-gray);
+      line-height: 1.5;
+      max-width: 400px;
+    }
+
+    /* ============ CARD ============ */
+    .card {
+      background: var(--gwm-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      padding: 20px 16px;
+      width: 100%;
+      max-width: 520px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    /* ============ NAME INPUT ============ */
+    .name-card {
+      text-align: center;
+    }
+
+    .name-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .name-card p {
+      color: var(--gwm-gray);
+      margin-bottom: 14px;
+      font-size: 0.82rem;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: var(--transition);
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .input-group input:focus {
+      border-color: var(--gwm-red);
+      box-shadow: 0 0 0 4px rgba(214, 32, 42, 0.1);
+    }
+
+    .input-group input::placeholder {
+      color: #bbb;
+    }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    .btn-primary {
+      background: var(--gwm-red);
+      color: white;
+      box-shadow: 0 2px 8px rgba(214, 32, 42, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(214, 32, 42, 0.35);
+      background: #c41d26;
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: var(--gwm-light);
+      color: var(--gwm-dark);
+    }
+
+    .btn-secondary:hover {
+      background: #e8e8e8;
+    }
+
+    /* ============ QUESTION SCREEN ============ */
+    .question-screen {
+      gap: 12px;
+      padding-top: 72px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .question-counter {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gwm-red);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .question-card {
+      text-align: center;
+    }
+
+    .question-emoji {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gwm-red);
+    }
+    .question-emoji svg {
+      width: 32px;
+      height: 32px;
+      stroke-width: 2;
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .question-hint {
+      font-size: 0.8rem;
+      color: var(--gwm-gray);
+      margin-bottom: 16px;
+    }
+
+    /* ============ OPTIONS ============ */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .options-grid.single-col {
+      grid-template-columns: 1fr;
+    }
+
+    .options-grid.three-col {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .option-card {
+      position: relative;
+      background: var(--gwm-white);
+      border: 2px solid #e8e8e8;
+      border-radius: var(--radius-sm);
+      padding: 14px 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-height: 90px;
+      justify-content: center;
+    }
+
+    .option-card:hover {
+      border-color: var(--gwm-red);
+      background: #fff8f8;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .option-card:active {
+      transform: scale(0.97);
+    }
+
+    .option-card.selected {
+      border-color: var(--gwm-red);
+      background: #fff5f5;
+      box-shadow: 0 0 0 2px rgba(214, 32, 42, 0.12);
+    }
+
+    .option-icon {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gwm-red);
+    }
+    .option-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke-width: 2;
+    }
+
+    .option-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gwm-dark);
+      line-height: 1.3;
+    }
+
+    .option-desc {
+      font-size: 0.7rem;
+      color: var(--gwm-gray);
+      line-height: 1.3;
+    }
+
+    .option-check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gwm-red);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .option-card.selected .option-check {
+      display: flex;
+    }
+
+    .option-check svg {
+      width: 14px;
+      height: 14px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); }
+      to { transform: scale(1); }
+    }
+
+    /* ============ LOADING SCREEN ============ */
+    .loading-screen {
+      text-align: center;
+      gap: 24px;
+      padding-top: 72px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-visual {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loading-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 3px solid transparent;
+    }
+
+    .loading-ring-1 {
+      width: 200px;
+      height: 200px;
+      border-top-color: var(--gwm-red);
+      animation: spin 1.2s linear infinite;
+    }
+
+    .loading-ring-2 {
+      width: 160px;
+      height: 160px;
+      border-right-color: #ff4757;
+      animation: spin 1.8s linear infinite reverse;
+    }
+
+    .loading-ring-3 {
+      width: 120px;
+      height: 120px;
+      border-bottom-color: #ffa8a8;
+      animation: spin 2.4s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-car-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--gwm-red);
+      animation: pulse 1.5s ease-in-out infinite;
+      z-index: 1;
+    }
+    .loading-car-icon svg {
+      width: 48px;
+      height: 48px;
+      stroke-width: 1.5;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.7; }
+    }
+
+    .loading-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gwm-dark);
+    }
+
+    .loading-subtext {
+      font-size: 0.95rem;
+      color: var(--gwm-gray);
+      margin-top: 8px;
+    }
+
+    .loading-dots {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .loading-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gwm-red);
+      animation: dotBounce 1.4s ease-in-out infinite;
+    }
+
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dotBounce {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .loading-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+      max-width: 280px;
+    }
+
+    .loading-step {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: #ccc;
+      transition: var(--transition);
+    }
+
+    .loading-step.active {
+      color: var(--gwm-dark);
+    }
+
+    .loading-step.done {
+      color: #27ae60;
+    }
+
+    .loading-step-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      background: #eee;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .loading-step.active .loading-step-icon {
+      background: var(--gwm-red);
+      color: white;
+    }
+
+    .loading-step.done .loading-step-icon {
+      background: #27ae60;
+      color: white;
+    }
+
+    /* ============ RESULT SCREEN MINIMAL ============ */
+    .result-screen-minimal {
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 100px 20px 80px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      text-align: center;
+      position: relative;
+      scroll-behavior: smooth;
+    }
+    .result-screen-minimal::-webkit-scrollbar {
+      width: 0px;
+    }
+    .result-screen-minimal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .result-screen-minimal::-webkit-scrollbar-thumb {
+      background: transparent;
+    }
+
+    /* Hero text section */
+    .result-hero {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0;
+    }
+
+    .result-intro {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      text-transform: none;
+      color: #666;
+      letter-spacing: 2px;
+      margin: 0 0 4px 0;
+      opacity: 0;
+    }
+
+    .result-giant-text {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 12vw, 8rem);
+      text-transform: uppercase;
+      line-height: 0.85;
+      letter-spacing: -3px;
+      transition: color 0.5s ease;
+      margin: 0;
+      opacity: 0;
+    }
+
+    /* Car hero image — appears first, dramatic reveal */
+    .result-car-hero {
+      position: relative;
+      z-index: 2;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9) translateY(20px);
+      cursor: grab;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: pan-y;
+    }
+    .result-car-hero:active {
+      cursor: grabbing;
+    }
+
+    .result-car-hero img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
+      transition: opacity 0.4s ease;
+      display: block;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+
+    /* Swipe indicator */
+    .result-swipe-indicator {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #999;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* Color bar - inline, below image */
+    .result-color-bar {
+      position: relative;
+      margin-top: 24px;
+      background: #1a1a1a;
+      border-radius: 60px;
+      padding: 14px 28px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .result-color-square {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .result-color-square:hover {
+      transform: scale(1.1);
+    }
+
+    .result-color-square.active {
+      border-color: #ffffff;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Match percentage section */
+    .result-match-section {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .result-match-percent {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      font-size: 3rem;
+      color: var(--gwm-red);
+      line-height: 1;
+    }
+
+    .result-match-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      color: #999;
+      letter-spacing: 2px;
+      text-transform: lowercase;
+    }
+
+    /* Description */
+    .result-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--gwm-gray);
+      line-height: 1.6;
+      max-width: 500px;
+      margin-top: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* Action buttons */
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+      padding-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .result-actions .btn {
+      border-radius: 50px;
+      padding: 12px 28px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--gwm-dark);
+      border: 2px solid #e0e0e0 !important;
+    }
+    .btn-outline:hover {
+      border-color: var(--gwm-dark) !important;
+      background: #f5f5f5;
+    }
+
+    .btn-primary {
+      background: var(--gwm-red);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #b51a24;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(214, 32, 42, 0.3);
+    }
+
+    /* Reveal animations */
+    @keyframes revealPop {
+      0% { transform: scale(0.3); opacity: 0; }
+      60% { transform: scale(1.08); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes revealFadeUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .reveal-pop {
+      animation: revealPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .reveal-fade-up {
+      animation: revealFadeUp 0.5s ease forwards;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 24px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #ccc;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .footer a {
+      color: var(--gwm-red);
+      text-decoration: none;
+    }
+
+    /* ============ CONFETTI ============ */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 480px) {
+      .app-container {
+        padding: 8px;
+      }
+
+      .welcome-screen {
+        gap: 12px;
+      }
+
+      .welcome-hero {
+        max-width: 280px;
+        height: 100px;
+      }
+
+      .welcome-title {
+        font-size: 1.2rem;
+      }
+
+      .welcome-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .question-screen {
+        gap: 8px;
+      }
+
+      .question-text {
+        font-size: 1rem;
+      }
+
+      .question-emoji {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 8px;
+      }
+      .question-emoji svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .question-hint {
+        font-size: 0.72rem;
+        margin-bottom: 10px;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      .options-grid.three-col {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .option-card {
+        padding: 10px 6px;
+        min-height: 72px;
+        gap: 4px;
+      }
+
+      .option-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .option-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      .option-label {
+        font-size: 0.72rem;
+      }
+
+      .option-desc {
+        display: none;
+      }
+
+      .result-screen-minimal {
+        padding: 80px 16px 60px;
+      }
+
+      .result-intro {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
+
+      .result-giant-text {
+        font-size: clamp(2.5rem, 15vw, 4rem);
+        letter-spacing: -1px;
+      }
+
+      .result-car-hero {
+        max-width: 95%;
+        margin-top: -10px;
+      }
+
+      .result-color-bar {
+        margin-top: 18px;
+        padding: 10px 20px;
+        gap: 10px;
+      }
+
+      .result-color-square {
+        width: 26px;
+        height: 26px;
+        border-radius: 5px;
+      }
+
+      .result-match-percent {
+        font-size: 2.2rem;
+      }
+
+      .result-match-section {
+        margin-top: 28px;
+      }
+
+      .result-description {
+        font-size: 0.85rem;
+        margin-top: 18px;
+        max-width: 90%;
+      }
+
+      .result-actions {
+        margin-top: 24px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .result-actions .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+
+      .card {
+        padding: 14px 10px;
+      }
+
+      .loading-visual {
+        width: 150px;
+        height: 150px;
+      }
+
+      .loading-ring-1 { width: 150px; height: 150px; }
+      .loading-ring-2 { width: 120px; height: 120px; }
+      .loading-ring-3 { width: 90px; height: 90px; }
+
+      .loading-car-icon {
+        width: 32px;
+        height: 32px;
+      }
+      .loading-car-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .loading-text {
+        font-size: 0.95rem;
+      }
+
+      .loading-steps {
+        max-width: 240px;
+        gap: 6px;
+      }
+
+      .loading-step {
+        font-size: 0.72rem;
+      }
+
+      .nav-arrows {
+        max-width: 400px;
+        gap: 6px;
+      }
+
+      .nav-arrow {
+        padding: 8px;
+        font-size: 0.75rem;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.82rem;
+      }
+
+      /* Minimal result screen - mobile adjustments already above */
+
+      .name-card h2 {
+        font-size: 1rem;
+      }
+
+      .name-card p {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+      }
+
+      .input-group input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .options-grid {
+        gap: 10px;
+      }
+
+      .options-grid.three-col {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .option-card {
+        padding: 16px 12px;
+        min-height: 100px;
+      }
+
+      .option-icon {
+        width: 40px;
+        height: 40px;
+      }
+      .option-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .option-label {
+        font-size: 0.9rem;
+      }
+
+      .question-text {
+        font-size: 1.25rem;
+      }
+
+      .welcome-title {
+        font-size: 1.7rem;
+      }
+
+      .welcome-subtitle {
+        font-size: 1rem;
+      }
+
+      .result-giant-text {
+        font-size: clamp(3rem, 10vw, 6rem);
+      }
+
+      .result-car-hero {
+        max-width: 750px;
+      }
+
+      .result-color-bar {
+        margin-top: 20px;
+      }
+
+      .result-match-percent {
+        font-size: 2.8rem;
+      }
+
+      .result-description {
+        max-width: 550px;
+      }
+    }
+
+    /* ============ TOUCH OPTIMIZATIONS ============ */
+    @media (hover: none) and (pointer: coarse) {
+      .option-card {
+        min-height: 80px;
+        padding: 12px 8px;
+      }
+
+      .btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ============ NAVIGATION ARROWS ============ */
+    .nav-arrows {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      max-width: 520px;
+      margin-top: 4px;
+    }
+
+    .nav-arrow {
+      flex: 1;
+      padding: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      border: 2px solid #e8e8e8;
+      border-radius: 50px;
+      background: white;
+      color: var(--gwm-gray);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-arrow:hover {
+      border-color: var(--gwm-red);
+      color: var(--gwm-red);
+    }
+
+    .nav-arrow:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .nav-arrow.next {
+      background: var(--gwm-red);
+      color: white;
+      border-color: var(--gwm-red);
+    }
+
+    .nav-arrow.next:hover {
+      box-shadow: 0 2px 8px rgba(214, 32, 42, 0.25);
+      background: #c41d26;
+    }
+
+    .nav-arrow.next:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ============ GWM BRANDING COLORS ============ */
+    .gwm-gradient {
+      background: linear-gradient(135deg, var(--gwm-red) 0%, #ff4757 50%, var(--gwm-red) 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ============ SPARKLE ============ */
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gwm-red);
+      animation: sparkleAnim 0.6s ease forwards;
+      pointer-events: none;
+    }
+
+    @keyframes sparkleAnim {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="public/logo.svg" alt="GWM" style="height:36px;width:auto;">
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="app-container" id="app">
+
+    <!-- WELCOME SCREEN -->
+    <div class="screen active" id="welcomeScreen">
+      <div class="welcome-screen">
+        <div class="welcome-hero">
+          <img src="public/haval-h7-hamilton-white.webp" alt="GWM Vehicle">
+          <div class="welcome-hero-overlay">
+            <img src="public/logo.svg" alt="GWM" style="height:32px;filter:brightness(0) invert(1);">
+          </div>
+        </div>
+
+        <h1 class="welcome-title">
+          Descubre el <span>auto GWM</span> que va contigo
+        </h1>
+
+        <p class="welcome-subtitle">
+          Responde unas preguntas sobre ti y te recomendaremos el modelo GWM perfecto para tu estilo de vida.
+        </p>
+
+        <div class="card name-card">
+          <h2>¿Cómo te llamas?</h2>
+          <p>Empecemos conociéndote</p>
+          <div class="input-group">
+            <input
+              type="text"
+              id="nameInput"
+              placeholder="Escribe tu nombre"
+              maxlength="30"
+              autocomplete="off"
+            >
+          </div>
+          <button class="btn btn-primary" id="startBtn" disabled>
+            Comenzar
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION SCREEN -->
+    <div class="screen" id="questionScreen">
+      <div class="question-screen">
+        <span class="question-counter" id="questionCounter"></span>
+
+        <div class="card question-card">
+          <span class="question-emoji" id="questionEmoji"></span>
+          <h2 class="question-text" id="questionText"></h2>
+          <p class="question-hint" id="questionHint"></p>
+
+          <div class="options-grid" id="optionsGrid"></div>
+        </div>
+
+        <div class="nav-arrows">
+          <button class="nav-arrow prev" id="prevBtn" disabled>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Anterior
+          </button>
+          <button class="nav-arrow next" id="nextBtn" disabled>
+            Siguiente
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOADING SCREEN -->
+    <div class="screen" id="loadingScreen">
+      <div class="loading-screen">
+        <div class="loading-visual">
+          <div class="loading-ring loading-ring-1"></div>
+          <div class="loading-ring loading-ring-2"></div>
+          <div class="loading-ring loading-ring-3"></div>
+          <span class="loading-car-icon"><i data-lucide="car"></i></span>
+        </div>
+
+        <div>
+          <p class="loading-text" id="loadingText">Analizando tu perfil</p>
+          <p class="loading-subtext">
+            <span class="loading-dots">
+              <span></span><span></span><span></span>
+            </span>
+          </p>
+        </div>
+
+        <div class="loading-steps" id="loadingSteps">
+          <div class="loading-step" data-step="0">
+            <div class="loading-step-icon">1</div>
+            <span>Revisando tus preferencias</span>
+          </div>
+          <div class="loading-step" data-step="1">
+            <div class="loading-step-icon">2</div>
+            <span>Comparando con modelos GWM</span>
+          </div>
+          <div class="loading-step" data-step="2">
+            <div class="loading-step-icon">3</div>
+            <span>Encontrando el match perfecto</span>
+          </div>
+          <div class="loading-step" data-step="3">
+            <div class="loading-step-icon">4</div>
+            <span>Preparando tu resultado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div class="screen" id="resultScreen">
+      <div class="result-screen-minimal">
+        <div class="result-hero">
+          <p class="result-intro">Tu modelo ideal es</p>
+          <h1 class="result-giant-text" id="resultGiantText"></h1>
+        </div>
+        <div class="result-car-hero" id="resultCarHero">
+          <img id="resultCarImg" src="" alt="Vehicle">
+          <div class="result-swipe-indicator" id="resultSwipeIndicator">1 / 5</div>
+        </div>
+        <div class="result-color-bar" id="resultColorBar"></div>
+        <div class="result-match-section" id="resultMatchSection">
+          <span class="result-match-percent" id="resultMatchPercent">87%</span>
+          <span class="result-match-label">compatibilidad</span>
+        </div>
+        <p class="result-description" id="resultDescription"></p>
+        <div class="result-actions" id="resultActions">
+          <button class="btn btn-outline" id="restartBtn">
+            <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i>
+            Volver a intentar
+          </button>
+          <a href="https://www.gwm-ve.com/es" target="_blank" class="btn btn-primary">
+            <i data-lucide="external-link" style="width:16px;height:16px;"></i>
+            Visitar GWM Venezuela
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFETTI CONTAINER -->
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Hecho con <i data-lucide="heart" style="width:12px;height:12px;color:#D6202A;vertical-align:middle;"></i> para <a href="https://www.gwm-ve.com/es" target="_blank">GWM Venezuela</a> — Hello, Tomorrow
+  </div>
+
+  <script>
+    // ============ DATA ============
+    const questions = [
+      {
+        id: 'place',
+        emoji: 'globe',
+        text: '¿Dónde te gustaría pasar tus vacaciones ideales?',
+        hint: 'Elige el lugar que más te atrae',
+        singleCol: false,
+        options: [
+          { icon: 'waves', label: 'La playa', desc: 'Sol, arena y mar', value: 'beach' },
+          { icon: 'mountain', label: 'La montaña', desc: 'Aventura y naturaleza', value: 'mountain' },
+          { icon: 'building-2', label: 'La ciudad', desc: 'Cultura y entretenimiento', value: 'city' },
+          { icon: 'trees', label: 'El campo', desc: 'Paz y tranquilidad', value: 'countryside' },
+          { icon: 'anchor', label: 'Costa tranquila', desc: 'Relax junto al mar', value: 'coast' }
+        ]
+      },
+      {
+        id: 'time',
+        emoji: 'clock',
+        text: '¿En qué momento prefieres viajar?',
+        hint: 'Tu horario ideal de aventura',
+        singleCol: false,
+        options: [
+          { icon: 'sunrise', label: 'Amanecer', desc: 'Saludos al sol naciente', value: 'sunrise' },
+          { icon: 'sun', label: 'Mediodía', desc: 'Pleno día de acción', value: 'noon' },
+          { icon: 'sunset', label: 'Atardecer', desc: 'Horas doradas', value: 'sunset' },
+          { icon: 'moon', label: 'Noche', desc: 'Luces y estrellas', value: 'night' },
+          { icon: 'calendar', label: 'Sin horario', desc: 'Cuando quiera', value: 'flexible' }
+        ]
+      },
+      {
+        id: 'music',
+        emoji: 'music',
+        text: '¿Qué música suena en tu auto?',
+        hint: 'Tu playlist favorita al conducir',
+        singleCol: false,
+        options: [
+          { icon: 'guitar', label: 'Rock / Pop', desc: 'Energía pura', value: 'rock' },
+          { icon: 'mic', label: 'Urbano', desc: 'Reggaetón y trap', value: 'urban' },
+          { icon: 'radio', label: 'Electrónica', desc: 'Beats y ritmo', value: 'electronic' },
+          { icon: 'headphones', label: 'Clásica / Lo-fi', desc: 'Calma y concentración', value: 'chill' },
+          { icon: 'disc', label: 'Salsa / Merengue', desc: 'Ritmo caribeño', value: 'salsa' },
+          { icon: 'podcast', label: 'Podcast / Silencio', desc: 'Paz mental', value: 'silence' }
+        ]
+      },
+      {
+        id: 'company',
+        emoji: 'users',
+        text: '¿Con quién viajas más?',
+        hint: 'Tus compañeros de ruta habituales',
+        singleCol: false,
+        options: [
+          { icon: 'user', label: 'Solo/a', desc: 'Libertad total', value: 'solo' },
+          { icon: 'heart', label: 'En pareja', desc: 'A dos velocidades', value: 'couple' },
+          { icon: 'users', label: 'En familia', desc: 'Todos a bordo', value: 'family' },
+          { icon: 'party-popper', label: 'Con amigos', desc: 'Aventura en grupo', value: 'friends' },
+          { icon: 'dog', label: 'Con mascotas', desc: 'Ellos también viajan', value: 'pets' }
+        ]
+      },
+      {
+        id: 'activity',
+        emoji: 'target',
+        text: '¿Qué actividad no puede faltar en tu fin de semana?',
+        hint: 'Tu plan ideal de descanso',
+        singleCol: false,
+        options: [
+          { icon: 'dumbbell', label: 'Deporte', desc: 'Entrenar y moverse', value: 'sport' },
+          { icon: 'clapperboard', label: 'Entretenimiento', desc: 'Cine, series, eventos', value: 'entertainment' },
+          { icon: 'armchair', label: 'Relax total', desc: 'Descansar y recargar', value: 'relax' },
+          { icon: 'wrench', label: 'Proyectos', desc: 'Crear y construir', value: 'projects' },
+          { icon: 'tent', label: 'Naturaleza', desc: 'Camping y senderismo', value: 'nature' },
+          { icon: 'shopping-bag', label: 'Compras / Salir', desc: 'Social y compras', value: 'shopping' }
+        ]
+      },
+      {
+        id: 'food',
+        emoji: 'utensils',
+        text: '¿Cuál es tu estilo de comida?',
+        hint: 'La gastronomía también dice mucho de ti',
+        singleCol: false,
+        options: [
+          { icon: 'sandwich', label: 'Casual', desc: 'Hamburguesas y snacks', value: 'casual' },
+          { icon: 'fish', label: 'Gourmet', desc: 'Sabores del mundo', value: 'gourmet' },
+          { icon: 'salad', label: 'Saludable', desc: 'Fresco y nutritivo', value: 'healthy' },
+          { icon: 'egg-fried', label: 'Casera', desc: 'Sabor de hogar', value: 'home' },
+          { icon: 'ice-cream-cone', label: 'Street food', desc: 'Comida callejera', value: 'streetfood' }
+        ]
+      },
+      {
+        id: 'personality',
+        emoji: 'sparkles',
+        text: '¿Cómo te describirían tus amigos?',
+        hint: 'Elige la que más resuene contigo',
+        singleCol: false,
+        options: [
+          { icon: 'flame', label: 'Aventurero/a', desc: 'Siempre buscando lo nuevo', value: 'adventurer' },
+          { icon: 'brain', label: 'Analítico/a', desc: 'Piensa antes de actuar', value: 'analytical' },
+          { icon: 'heart', label: 'Sociable', desc: 'El alma de la fiesta', value: 'social' },
+          { icon: 'palette', label: 'Creativo/a', desc: 'Imaginación sin límites', value: 'creative' },
+          { icon: 'crown', label: 'Líder', desc: 'Siempre al frente', value: 'leader' },
+          { icon: 'coffee', label: 'Tranquilo/a', desc: 'Paz y calma', value: 'calm' }
+        ]
+      },
+      {
+        id: 'dream',
+        emoji: 'zap',
+        text: 'Si pudieras tener un superpoder, ¿cuál sería?',
+        hint: 'Piensa fuera de lo común',
+        singleCol: false,
+        options: [
+          { icon: 'bird', label: 'Volar', desc: 'Libertad en el cielo', value: 'fly' },
+          { icon: 'zap', label: 'Super velocidad', desc: 'Más rápido que el rayo', value: 'speed' },
+          { icon: 'eye', label: 'Ver el futuro', desc: 'Anticipar todo', value: 'future' },
+          { icon: 'dumbbell', label: 'Fuerza ilimitada', desc: 'Mover montañas', value: 'strength' },
+          { icon: 'ghost', label: 'Invisibilidad', desc: 'Desaparecer a voluntad', value: 'invisible' }
+        ]
+      }
+    ];
+
+    // Vehicle models with scoring weights and local images
+    const models = {
+      haval_h7: {
+        name: 'HAVAL H7',
+        brand: 'HAVAL',
+        tagline: 'Tu compañero de exploración',
+        mainImage: 'public/haval-h7-hamilton-white.webp',
+        colors: [
+          { name: 'Hamilton White', hex: '#FFFFFF', image: 'public/haval-h7-hamilton-white.webp' },
+          { name: 'N1 Black', hex: '#1a1a1a', image: 'public/haval-h7-n1-black.webp' },
+          { name: 'C1H Gray', hex: '#808080', image: 'public/haval-h7-c1h-gray.webp' },
+          { name: 'C0C Gray', hex: '#606060', image: 'public/haval-h7-c0c-gray.webp' },
+          { name: '41E Green', hex: '#2d5016', image: 'public/haval-h7-41e-green.webp' }
+        ],
+        description: 'El HAVAL H7 es perfecto para ti. Con su gran tamaño, capacidad off-road y tecnología avanzada, este SUV está diseñado para quienes buscan aventura sin renunciar al confort. Su interior espacioso y sus sistemas de seguridad lo hacen ideal para familias y exploradores.',
+        features: [
+          { icon: 'mountain', label: 'Capacidad 4x4' },
+          { icon: 'users', label: 'Espacio familiar' },
+          { icon: 'shield-check', label: 'Seguridad total' }
+        ],
+        personality: ['Aventurero', 'Familiar', 'Explorador', 'Decidido'],
+        scores: {
+          mountain: 3, beach: 1, city: 1, countryside: 2, coast: 1,
+          sunrise: 2, noon: 1, sunset: 2, night: 1, flexible: 1,
+          rock: 2, urban: 1, electronic: 1, chill: 2, salsa: 1, silence: 2,
+          solo: 1, couple: 2, family: 3, friends: 1, pets: 2,
+          sport: 2, entertainment: 1, relax: 1, projects: 2, nature: 3, shopping: 0,
+          casual: 1, gourmet: 1, healthy: 2, home: 2, streetfood: 1,
+          adventurer: 3, analytical: 1, social: 1, creative: 1, leader: 2, calm: 2,
+          fly: 2, speed: 1, future: 1, strength: 2, invisible: 1
+        }
+      },
+      ora_5: {
+        name: 'ORA 5',
+        brand: 'ORA',
+        tagline: 'Estilo que te define',
+        mainImage: 'public/ora-5-v1-9h-white.webp',
+        colors: [
+          { name: '9H White', hex: '#FFFFFF', image: 'public/ora-5-v1-9h-white.webp' },
+          { name: '90L White', hex: '#F5F5F5', image: 'public/ora-5-v1-90l-white.webp' },
+          { name: '10W Red', hex: '#CC0000', image: 'public/ora-5-v1-10w-red.webp' },
+          { name: '41E Green', hex: '#2d5016', image: 'public/ora-5-v1-41e-green (1).webp' },
+          { name: '61B Blue', hex: '#1a3a5c', image: 'public/ora-5-v1-61b-blue.webp' },
+          { name: 'N1 Black', hex: '#1a1a1a', image: 'public/ora-5-v1-n1-black.webp' },
+          { name: 'C1H Matte Gray', hex: '#808080', image: 'public/ora-5-v1-c1h-matte-gray.webp' },
+          { name: 'C2P Mountain Grey', hex: '#6B7B8D', image: 'public/ora-5-v1-c2p-distant-mountain-grey.webp' }
+        ],
+        description: 'El ORA 5 es tu match perfecto. Con un diseño elegante y lleno de tecnología, este vehículo compacto es ideal para quienes valoran el estilo, la innovación y la versatilidad. Perfecto para moverte por la ciudad con personalidad propia.',
+        features: [
+          { icon: 'sparkles', label: 'Diseño elegante' },
+          { icon: 'smartphone', label: 'Tech avanzada' },
+          { icon: 'building', label: 'Urbano' }
+        ],
+        personality: ['Estiloso', 'Innovador', 'Urbano', 'Trendy'],
+        scores: {
+          mountain: 0, beach: 2, city: 3, countryside: 0, coast: 2,
+          sunrise: 1, noon: 2, sunset: 2, night: 2, flexible: 2,
+          rock: 1, urban: 3, electronic: 2, chill: 1, salsa: 2, silence: 1,
+          solo: 2, couple: 3, family: 0, friends: 2, pets: 1,
+          sport: 1, entertainment: 3, relax: 1, projects: 1, nature: 0, shopping: 3,
+          casual: 1, gourmet: 3, healthy: 1, home: 0, streetfood: 2,
+          adventurer: 1, analytical: 1, social: 3, creative: 2, leader: 1, calm: 1,
+          fly: 1, speed: 2, future: 2, strength: 0, invisible: 2
+        }
+      },
+      tank_300: {
+        name: 'TANK 300',
+        brand: 'TANK',
+        tagline: 'Robusto como tú',
+        mainImage: 'public/white-tank-300-venezuela-gwm.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/white-tank-300-venezuela-gwm.webp' },
+          { name: 'Sun Black', hex: '#1a1a1a', image: 'public/sun-black-tank-300-venezuela-gwm.webp' },
+          { name: 'Thunder Grey', hex: '#6B6B6B', image: 'public/thunder-grey-tank-300-venezuela-gwm.webp' },
+          { name: 'Mars Red', hex: '#8B2500', image: 'public/tank-300-mars-red-gwm-venezuela.webp' },
+          { name: 'Lava Orange', hex: '#FF6B2B', image: 'public/tank-300-lava-orange-gwm-venezuela.webp' }
+        ],
+        description: 'El TANK 300 es exactamente lo que necesitas. Con robustez y eficiencia para cualquier desafío, este SUV off-road de lujo combina potencia pura con equipamiento premium. Si eres de los que no teme a ningún terreno, este es tu vehículo.',
+        features: [
+          { icon: 'zap', label: 'Potencia pura' },
+          { icon: 'tent', label: 'Off-road real' },
+          { icon: 'crown', label: 'Premium' }
+        ],
+        personality: ['Audaz', 'Fuerte', 'Independiente', 'Líder'],
+        scores: {
+          mountain: 3, beach: 1, city: 0, countryside: 2, coast: 1,
+          sunrise: 2, noon: 1, sunset: 1, night: 2, flexible: 1,
+          rock: 3, urban: 0, electronic: 1, chill: 1, salsa: 0, silence: 2,
+          solo: 3, couple: 1, family: 1, friends: 2, pets: 1,
+          sport: 3, entertainment: 0, relax: 0, projects: 2, nature: 3, shopping: 0,
+          casual: 2, gourmet: 0, healthy: 2, home: 0, streetfood: 1,
+          adventurer: 3, analytical: 0, social: 0, creative: 0, leader: 3, calm: 1,
+          fly: 1, speed: 2, future: 0, strength: 3, invisible: 1
+        }
+      },
+      haval_h6gt: {
+        name: 'HAVAL H6 GT',
+        brand: 'HAVAL',
+        tagline: 'Deportivo y audaz',
+        mainImage: 'public/haval-hev-h6gt-white-gwm-venezuela.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/haval-hev-h6gt-white-gwm-venezuela.webp' },
+          { name: 'G7 Red', hex: '#CC0000', image: 'public/haval-hev-h6gt-g7-red-gwm-venezuela.webp' },
+          { name: 'Atlantic Blue', hex: '#1a3a5c', image: 'public/haval-hev-h6gt-atlantic-blue-gwm-venezuela.webp' },
+          { name: 'KU Gray', hex: '#808080', image: 'public/haval-hev-h6gt-ku-gray-gwm-venezuela.webp' },
+          { name: 'Ayers Gray', hex: '#606060', image: 'public/haval-hev-h6gt-ayers-gray-gwm-venezuela.webp' },
+          { name: 'Sun Black', hex: '#1a1a1a', image: 'public/haval-hev-h6gt-sun-black-gwm-venezuela.webp' }
+        ],
+        description: 'El HAVAL H6 GT combina un diseño audaz y deportivo con tecnología de vanguardia. Si buscas velocidad, estilo y rendimiento, este SUV coupé es tu compañero ideal para las calles y las carreteras.',
+        features: [
+          { icon: 'flag', label: 'Deportivo' },
+          { icon: 'flame', label: 'Diseño audaz' },
+          { icon: 'wind', label: 'Rendimiento' }
+        ],
+        personality: ['Deportivo', 'Audaz', 'Veloz', 'Carismático'],
+        scores: {
+          mountain: 1, beach: 2, city: 2, countryside: 0, coast: 2,
+          sunrise: 1, noon: 2, sunset: 2, night: 3, flexible: 2,
+          rock: 2, urban: 2, electronic: 3, chill: 0, salsa: 1, silence: 0,
+          solo: 2, couple: 2, family: 0, friends: 3, pets: 0,
+          sport: 3, entertainment: 2, relax: 0, projects: 0, nature: 1, shopping: 1,
+          casual: 2, gourmet: 1, healthy: 1, home: 0, streetfood: 2,
+          adventurer: 2, analytical: 0, social: 2, creative: 1, leader: 2, calm: 0,
+          fly: 2, speed: 3, future: 1, strength: 1, invisible: 1
+        }
+      },
+      poer_passenger: {
+        name: 'POER PASSENGER',
+        brand: 'POER',
+        tagline: 'Explora sin límites',
+        mainImage: 'public/haval-poer-passenger-white-gwm-venezuela.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/haval-poer-passenger-white-gwm-venezuela.webp' },
+          { name: 'Silver', hex: '#C0C0C0', image: 'public/haval-poer-passenger-silver-gwm-venezuela.webp' }
+        ],
+        description: 'El POER PASSENGER es la pickup que combina fuerza real con confort y tecnología. Ideal para quienes necesitan versatilidad: trabajo durante la semana y aventura el fin de semana. Estilo y potencia en cada camino.',
+        features: [
+          { icon: 'dumbbell', label: 'Fuerza real' },
+          { icon: 'target', label: 'Versátil' },
+          { icon: 'sunrise', label: 'Sin límites' }
+        ],
+        personality: ['Trabajador', 'Versátil', 'Práctico', 'Explorador'],
+        scores: {
+          mountain: 2, beach: 1, city: 1, countryside: 3, coast: 1,
+          sunrise: 2, noon: 2, sunset: 1, night: 1, flexible: 2,
+          rock: 2, urban: 1, electronic: 0, chill: 2, salsa: 1, silence: 2,
+          solo: 1, couple: 1, family: 2, friends: 2, pets: 2,
+          sport: 1, entertainment: 0, relax: 1, projects: 3, nature: 2, shopping: 0,
+          casual: 3, gourmet: 0, healthy: 1, home: 3, streetfood: 2,
+          adventurer: 2, analytical: 2, social: 1, creative: 1, leader: 1, calm: 2,
+          fly: 0, speed: 1, future: 1, strength: 3, invisible: 0
+        }
+      },
+      haval_h6: {
+        name: 'HAVAL H6',
+        brand: 'HAVAL',
+        tagline: 'El equilibrio perfecto',
+        mainImage: 'public/haval-h6-white-gwm-venezuela-nueva-version.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/haval-h6-white-gwm-venezuela-nueva-version.webp' },
+          { name: 'Black', hex: '#1a1a1a', image: 'public/haval-h6-black-gwm-venezuela-nueva-version.webp' },
+          { name: 'Grey', hex: '#808080', image: 'public/haval-h6-grey-gwm-venezuela-nueva-version.webp' },
+          { name: 'Gold', hex: '#C5A55A', image: 'public/haval-h6-gold-gwm-venezuela-nueva-version.webp' }
+        ],
+        description: 'El HAVAL H6 es el SUV que lo tiene todo: diseño moderno, interior amplio y tecnología a bordo para el día a día. Un vehículo confiable y versátil que se adapta a cualquier estilo de vida.',
+        features: [
+          { icon: 'scale', label: 'Equilibrado' },
+          { icon: 'home', label: 'Versátil' },
+          { icon: 'bar-chart-3', label: 'Confiable' }
+        ],
+        personality: ['Equilibrado', 'Práctico', 'Confiable', 'Adaptable'],
+        scores: {
+          mountain: 1, beach: 2, city: 2, countryside: 1, coast: 2,
+          sunrise: 1, noon: 2, sunset: 2, night: 1, flexible: 2,
+          rock: 1, urban: 2, electronic: 1, chill: 2, salsa: 2, silence: 1,
+          solo: 1, couple: 2, family: 3, friends: 1, pets: 1,
+          sport: 1, entertainment: 2, relax: 2, projects: 1, nature: 1, shopping: 1,
+          casual: 2, gourmet: 1, healthy: 1, home: 2, streetfood: 1,
+          adventurer: 1, analytical: 2, social: 2, creative: 1, leader: 1, calm: 2,
+          fly: 1, speed: 1, future: 2, strength: 1, invisible: 1
+        }
+      },
+      haval_h9: {
+        name: 'HAVAL H9',
+        brand: 'HAVAL',
+        tagline: 'Premium sin compromisos',
+        mainImage: 'public/haval-h9-white-gwm-venezuela.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/haval-h9-white-gwm-venezuela.webp' },
+          { name: 'Black', hex: '#1a1a1a', image: 'public/haval-h9-black-gwm-venezuela.webp' },
+          { name: 'KZ Gray', hex: '#707070', image: 'public/haval-h9-kz-gray-gwm-venezuela.webp' },
+          { name: 'DX Gray', hex: '#505050', image: 'public/haval-h9-dx-gray-gwm-venezuela.webp' }
+        ],
+        description: 'El HAVAL H9 es el SUV premium grande que redefine el confort y la potencia. Con tracción integral avanzada, interior de lujo y tecnología de conducción asistida, es ideal para quienes exigen lo mejor en cada viaje. Espacio, elegancia y dominio en un solo vehículo.',
+        features: [
+          { icon: 'crown', label: 'Premium' },
+          { icon: 'shield-check', label: 'Seguridad AWD' },
+          { icon: 'armchair', label: 'Confort superior' }
+        ],
+        personality: ['Elegante', 'Líder', 'Exigente', 'Premium'],
+        scores: {
+          mountain: 2, beach: 1, city: 2, countryside: 2, coast: 2,
+          sunrise: 2, noon: 2, sunset: 2, night: 1, flexible: 1,
+          rock: 1, urban: 1, electronic: 1, chill: 3, salsa: 0, silence: 3,
+          solo: 1, couple: 2, family: 3, friends: 1, pets: 1,
+          sport: 1, entertainment: 1, relax: 3, projects: 2, nature: 2, shopping: 1,
+          casual: 1, gourmet: 3, healthy: 2, home: 2, streetfood: 0,
+          adventurer: 1, analytical: 3, social: 1, creative: 1, leader: 3, calm: 3,
+          fly: 1, speed: 1, future: 3, strength: 2, invisible: 1
+        }
+      },
+      haval_jolion: {
+        name: 'HAVAL Jolion',
+        brand: 'HAVAL',
+        tagline: 'Compacto y lleno de vida',
+        mainImage: 'public/haval-jolion-white-gwm-venezuela.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/haval-jolion-white-gwm-venezuela.webp' },
+          { name: 'Mars Red', hex: '#8B2500', image: 'public/haval-jolion-mars-red-gwm-venezuela.webp' },
+          { name: 'Blue', hex: '#1a3a5c', image: 'public/haval-jolion-blue-gwm-venezuela.webp' },
+          { name: 'Sun Black', hex: '#1a1a1a', image: 'public/haval-jolion-sun-black-gwm-venezuela.webp' },
+          { name: 'Ayers Grey', hex: '#606060', image: 'public/haval-jolion-ayers-grey-gwm-venezuela.webp' }
+        ],
+        description: 'El HAVAL Jolion es el SUV compacto que encaja perfecto en la vida urbana. Ágil, tecnológico y con un diseño joven y dinámico, es ideal para quienes buscan un auto versátil que se adapte a la ciudad sin perder personalidad. Compacto por fuera, grande por dentro.',
+        features: [
+          { icon: 'zap', label: 'Ágil urbano' },
+          { icon: 'smartphone', label: 'Conectado' },
+          { icon: 'sparkles', label: 'Diseño joven' }
+        ],
+        personality: ['Joven', 'Dinámico', 'Urbano', 'Versátil'],
+        scores: {
+          mountain: 0, beach: 2, city: 3, countryside: 0, coast: 2,
+          sunrise: 1, noon: 2, sunset: 2, night: 2, flexible: 3,
+          rock: 2, urban: 3, electronic: 2, chill: 1, salsa: 2, silence: 1,
+          solo: 2, couple: 2, family: 1, friends: 3, pets: 2,
+          sport: 2, entertainment: 2, relax: 1, projects: 1, nature: 1, shopping: 2,
+          casual: 2, gourmet: 1, healthy: 1, home: 1, streetfood: 3,
+          adventurer: 1, analytical: 1, social: 3, creative: 2, leader: 0, calm: 1,
+          fly: 2, speed: 2, future: 1, strength: 0, invisible: 2
+        }
+      },
+      tank_500: {
+        name: 'TANK 500',
+        brand: 'TANK',
+        tagline: 'Luero off-road definitivo',
+        mainImage: 'public/tank-500-white-gwm-venezuela.webp',
+        colors: [
+          { name: 'White', hex: '#FFFFFF', image: 'public/tank-500-white-gwm-venezuela.webp' },
+          { name: 'Black', hex: '#1a1a1a', image: 'public/black-tank500-gwm-venezuela.webp' },
+          { name: 'Gold', hex: '#C5A55A', image: 'public/gold-tank500-gwm-venezuela.webp' }
+        ],
+        description: 'El TANK 500 es el SUV off-road de lujo que combina imponente presencia con refinamiento absoluto. Potencia V6, tracción integral avanzada y un interior que rivaliza con los mejores sedanes premium. Para quienes no aceptan compromisos entre lujo y aventura extrema.',
+        features: [
+          { icon: 'crown', label: 'Lujo extremo' },
+          { icon: 'mountain', label: 'Off-road V6' },
+          { icon: 'shield-check', label: 'AWD avanzado' }
+        ],
+        personality: ['Imponente', 'Premium', 'Poderoso', 'Exclusivo'],
+        scores: {
+          mountain: 3, beach: 1, city: 1, countryside: 3, coast: 1,
+          sunrise: 2, noon: 1, sunset: 2, night: 2, flexible: 1,
+          rock: 2, urban: 0, electronic: 1, chill: 2, salsa: 0, silence: 3,
+          solo: 2, couple: 2, family: 2, friends: 1, pets: 1,
+          sport: 2, entertainment: 1, relax: 2, projects: 2, nature: 3, shopping: 0,
+          casual: 1, gourmet: 2, healthy: 2, home: 1, streetfood: 0,
+          adventurer: 3, analytical: 2, social: 0, creative: 0, leader: 3, calm: 2,
+          fly: 1, speed: 2, future: 2, strength: 3, invisible: 0
+        }
+      }
+    };
+
+    // ============ STATE ============
+    let currentQuestion = 0;
+    let userName = '';
+    let answers = {};
+
+    // ============ DOM ============
+    const $ = id => document.getElementById(id);
+    const welcomeScreen = $('welcomeScreen');
+    const questionScreen = $('questionScreen');
+    const loadingScreen = $('loadingScreen');
+    const resultScreen = $('resultScreen');
+    const nameInput = $('nameInput');
+    const startBtn = $('startBtn');
+    const progressContainer = $('progressContainer');
+    const progressBar = $('progressBar');
+
+    // ============ NAME INPUT ============
+    nameInput.addEventListener('input', () => {
+      startBtn.disabled = nameInput.value.trim().length < 2;
+    });
+
+    nameInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !startBtn.disabled) {
+        startQuiz();
+      }
+    });
+
+    startBtn.addEventListener('click', startQuiz);
+
+    // ============ NAVIGATION ============
+    $('prevBtn').addEventListener('click', () => {
+      if (currentQuestion > 0) {
+        navigateQuestion(-1);
+      }
+    });
+
+    $('nextBtn').addEventListener('click', () => {
+      if (currentQuestion < questions.length - 1) {
+        navigateQuestion(1);
+      } else {
+        showLoading();
+      }
+    });
+
+    // ============ FUNCTIONS ============
+    function startQuiz() {
+      userName = nameInput.value.trim();
+      if (userName.length < 2) return;
+
+      progressContainer.classList.add('visible');
+      switchScreen(welcomeScreen, questionScreen);
+      currentQuestion = 0;
+      renderQuestion();
+    }
+
+    function switchScreen(from, to) {
+      from.classList.add('exiting');
+      setTimeout(() => {
+        from.classList.remove('active', 'exiting');
+        to.classList.add('active');
+      }, 300);
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      const total = questions.length;
+
+      $('questionCounter').textContent = `Pregunta ${currentQuestion + 1} de ${total}`;
+      $('questionEmoji').innerHTML = `<i data-lucide="${q.emoji}"></i>`;
+      $('questionText').textContent = q.text;
+      $('questionHint').textContent = q.hint;
+
+      // Update progress
+      const progress = ((currentQuestion) / total) * 100;
+      progressBar.style.width = `${progress}%`;
+
+      // Build options
+      const grid = $('optionsGrid');
+      grid.innerHTML = '';
+      let gridClass = 'options-grid';
+      if (q.singleCol) gridClass += ' single-col';
+      else if (q.options.length >= 6) gridClass += ' three-col';
+      grid.className = gridClass;
+
+      q.options.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = 'option-card';
+        if (answers[q.id] === opt.value) {
+          card.classList.add('selected');
+        }
+        card.innerHTML = `
+          <span class="option-icon"><i data-lucide="${opt.icon}"></i></span>
+          <span class="option-label">${opt.label}</span>
+          <span class="option-desc">${opt.desc}</span>
+          <div class="option-check">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        `;
+        card.addEventListener('click', () => selectOption(q.id, opt.value, card, grid));
+        // Stagger animation
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, idx * 80);
+
+        grid.appendChild(card);
+      });
+
+      // Update nav buttons - hide on last question (auto-advances)
+      const navArrows = document.querySelector('.nav-arrows');
+      if (currentQuestion === total - 1) {
+        navArrows.style.display = 'none';
+      } else {
+        navArrows.style.display = 'flex';
+        $('prevBtn').disabled = currentQuestion === 0;
+        $('nextBtn').disabled = !answers[q.id];
+        $('nextBtn').innerHTML = 'Siguiente <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      }
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+    }
+
+    function selectOption(questionId, value, card, grid) {
+      // Remove selected from siblings
+      grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+
+      // Sparkle effect
+      createSparkle(card);
+
+      answers[questionId] = value;
+      $('nextBtn').disabled = false;
+
+      // Auto-advance after short delay
+      setTimeout(() => {
+        if (currentQuestion < questions.length - 1) {
+          navigateQuestion(1);
+        } else {
+          // Last question: auto-advance to loading
+          showLoading();
+        }
+      }, 500);
+    }
+
+    function createSparkle(element) {
+      const rect = element.getBoundingClientRect();
+      for (let i = 0; i < 5; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${rect.left + Math.random() * rect.width}px`;
+        sparkle.style.top = `${rect.top + Math.random() * rect.height}px`;
+        sparkle.style.background = ['#D6202A', '#ff4757', '#ffa8a8', '#ffd700', '#ff6b81'][i];
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 600);
+      }
+    }
+
+    function navigateQuestion(direction) {
+      const card = questionScreen.querySelector('.question-card');
+      card.style.transition = 'all 0.3s ease';
+      card.style.opacity = '0';
+      card.style.transform = direction > 0 ? 'translateX(-40px)' : 'translateX(40px)';
+
+      setTimeout(() => {
+        currentQuestion += direction;
+        renderQuestion();
+        card.style.transform = direction > 0 ? 'translateX(40px)' : 'translateX(-40px)';
+
+        requestAnimationFrame(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateX(0)';
+        });
+      }, 200);
+    }
+
+    function showLoading() {
+      progressBar.style.width = '100%';
+      switchScreen(questionScreen, loadingScreen);
+
+      // Animate loading steps
+      const steps = document.querySelectorAll('.loading-step');
+      const loadingTexts = [
+        'Analizando tu perfil',
+        'Comparando modelos',
+        'Calculando compatibilidad',
+        '¡Tu resultado está listo!'
+      ];
+
+      steps.forEach((step, idx) => {
+        setTimeout(() => {
+          step.classList.add('active');
+          $('loadingText').textContent = loadingTexts[idx];
+        }, idx * 800);
+
+        setTimeout(() => {
+          step.classList.remove('active');
+          step.classList.add('done');
+          step.querySelector('.loading-step-icon').textContent = '✓';
+        }, (idx + 1) * 800);
+      });
+
+      // Show result after loading
+      setTimeout(() => {
+        showResult();
+      }, 3600);
+    }
+
+    function calculateResult() {
+      let bestModel = null;
+      let bestScore = -1;
+
+      for (const [key, model] of Object.entries(models)) {
+        let score = 0;
+        for (const [qId, answer] of Object.entries(answers)) {
+          const q = questions.find(q => q.id === qId);
+          if (q && model.scores[answer] !== undefined) {
+            score += model.scores[answer];
+          }
+        }
+        if (score > bestScore) {
+          bestScore = score;
+          bestModel = { key, ...model };
+        }
+      }
+
+      // Calculate match percentage
+      const maxPossible = questions.length * 3;
+      const matchPercent = Math.min(98, Math.round((bestScore / maxPossible) * 100) + 10);
+
+      return { ...bestModel, matchPercent };
+    }
+
+    // Map light colors to darker shades for text legibility on white background
+    function getTextColor(hex) {
+      const upper = hex.toUpperCase();
+      if (upper === '#FFFFFF') return '#d0d0d0';
+      if (upper === '#F5F5F5') return '#c0c0c0';
+      if (upper === '#C0C0C0') return '#a0a0a0';
+      return hex;
+    }
+
+    // Current color index for swipe
+    let currentColorIndex = 0;
+    let currentResultData = null;
+
+    function showResult() {
+      const result = calculateResult();
+      currentResultData = result;
+      currentColorIndex = 0;
+      swipeSetupDone = false;
+      const activeColor = result.colors[0];
+
+      // Set giant text with color name
+      const giantText = $('resultGiantText');
+      giantText.textContent = activeColor.name.toUpperCase();
+      giantText.style.color = getTextColor(activeColor.hex);
+
+      // Set car image
+      const carImg = $('resultCarImg');
+      carImg.src = result.mainImage;
+
+      // Set swipe indicator
+      $('resultSwipeIndicator').textContent = `1 / ${result.colors.length}`;
+
+      // Set match percentage
+      $('resultMatchPercent').textContent = result.matchPercent + '%';
+
+      // Set description
+      $('resultDescription').textContent = result.description || '';
+
+      // Build color bar
+      const colorBar = $('resultColorBar');
+      colorBar.innerHTML = '';
+      result.colors.forEach((color, idx) => {
+        const square = document.createElement('div');
+        square.className = 'result-color-square' + (idx === 0 ? ' active' : '');
+        square.style.backgroundColor = color.hex;
+        if (color.hex.toUpperCase() === '#FFFFFF' || color.hex.toUpperCase() === '#F5F5F5') {
+          square.style.border = '2px solid #ccc';
+        }
+        square.title = color.name;
+        square.addEventListener('click', () => {
+          selectColor(idx);
+        });
+        colorBar.appendChild(square);
+      });
+
+      // Setup swipe on car hero
+      setupSwipe();
+
+      // Restart button
+      $('restartBtn').addEventListener('click', restartQuiz);
+
+      switchScreen(loadingScreen, resultScreen);
+
+      // Scroll to top immediately so the text is visible first
+      const resultContainer = resultScreen.querySelector('.result-screen-minimal');
+      resultContainer.scrollTop = 0;
+
+      // Dramatic reveal: TEXT FIRST, then car, then the rest
+      // 1. Text fades up first
+      setTimeout(() => {
+        const intro = resultScreen.querySelector('.result-intro');
+        intro.style.opacity = '0';
+        intro.classList.add('reveal-fade-up');
+      }, 200);
+
+      setTimeout(() => {
+        giantText.style.opacity = '0';
+        giantText.classList.add('reveal-fade-up');
+      }, 400);
+
+      // 2. Car pops in dramatically after text
+      setTimeout(() => {
+        const carHero = $('resultCarHero');
+        carHero.style.opacity = '0';
+        carHero.style.transform = 'scale(0.7) translateY(40px)';
+        carHero.style.transition = 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        requestAnimationFrame(() => {
+          carHero.style.opacity = '1';
+          carHero.style.transform = 'scale(1) translateY(0)';
+        });
+      }, 600);
+
+      // 3. Confetti bursts as car appears
+      setTimeout(launchConfetti, 800);
+
+      // 4. Color bar slides up
+      setTimeout(() => {
+        colorBar.style.opacity = '0';
+        colorBar.style.transform = 'translateY(20px)';
+        colorBar.style.transition = 'all 0.5s ease';
+        requestAnimationFrame(() => {
+          colorBar.style.opacity = '1';
+          colorBar.style.transform = 'translateY(0)';
+        });
+      }, 1000);
+
+      // 5. Match percentage fades in
+      setTimeout(() => {
+        const matchSection = $('resultMatchSection');
+        matchSection.style.opacity = '0';
+        matchSection.style.transform = 'translateY(20px)';
+        matchSection.style.transition = 'all 0.5s ease';
+        requestAnimationFrame(() => {
+          matchSection.style.opacity = '1';
+          matchSection.style.transform = 'translateY(0)';
+        });
+      }, 1150);
+
+      // 6. Description fades in
+      setTimeout(() => {
+        const desc = $('resultDescription');
+        desc.style.opacity = '0';
+        desc.style.transform = 'translateY(20px)';
+        desc.style.transition = 'all 0.5s ease';
+        requestAnimationFrame(() => {
+          desc.style.opacity = '1';
+          desc.style.transform = 'translateY(0)';
+        });
+      }, 1300);
+
+      // 7. Action buttons fade in
+      setTimeout(() => {
+        const actions = $('resultActions');
+        actions.style.opacity = '0';
+        actions.style.transform = 'translateY(20px)';
+        actions.style.transition = 'all 0.5s ease';
+        requestAnimationFrame(() => {
+          actions.style.opacity = '1';
+          actions.style.transform = 'translateY(0)';
+        });
+      }, 1450);
+
+      // Initialize Lucide icons for new buttons
+      setTimeout(() => lucide.createIcons(), 1500);
+    }
+
+    function selectColor(idx) {
+      if (!currentResultData) return;
+      const color = currentResultData.colors[idx];
+      currentColorIndex = idx;
+
+      // Change image and text color
+      const carImg = $('resultCarImg');
+      carImg.style.opacity = '0';
+      setTimeout(() => {
+        carImg.src = color.image;
+        const giantText = $('resultGiantText');
+        giantText.textContent = color.name.toUpperCase();
+        giantText.style.color = getTextColor(color.hex);
+        carImg.style.opacity = '1';
+      }, 200);
+
+      // Update active square
+      const colorBar = $('resultColorBar');
+      colorBar.querySelectorAll('.result-color-square').forEach(s => s.classList.remove('active'));
+      colorBar.querySelectorAll('.result-color-square')[idx]?.classList.add('active');
+
+      // Update swipe indicator
+      $('resultSwipeIndicator').textContent = `${idx + 1} / ${currentResultData.colors.length}`;
+    }
+
+    function swipeColor(direction) {
+      if (!currentResultData) return;
+      const total = currentResultData.colors.length;
+      let newIndex = currentColorIndex + direction;
+      if (newIndex < 0) newIndex = total - 1;
+      if (newIndex >= total) newIndex = 0;
+      selectColor(newIndex);
+    }
+
+    // Swipe state
+    let swipeStartX = 0;
+    let swipeStartY = 0;
+    let swipeSetupDone = false;
+
+    function setupSwipe() {
+      if (swipeSetupDone) return; // Prevent duplicate listeners
+      swipeSetupDone = true;
+
+      const carHero = $('resultCarHero');
+
+      carHero.addEventListener('touchstart', (e) => {
+        swipeStartX = e.touches[0].clientX;
+        swipeStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      carHero.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const diffX = endX - swipeStartX;
+        const diffY = endY - swipeStartY;
+
+        // Only trigger swipe if horizontal movement is greater than vertical
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+          if (diffX > 0) {
+            swipeColor(-1); // swipe right -> previous color
+          } else {
+            swipeColor(1); // swipe left -> next color
+          }
+        }
+      }, { passive: true });
+    }
+
+    function launchConfetti() {
+      const container = $('confettiContainer');
+      const colors = ['#D6202A', '#ff4757', '#ffd700', '#27ae60', '#3498db', '#9b59b6', '#e74c3c', '#f39c12', '#ff6b81', '#a29bfe', '#fd79a8', '#00b894'];
+
+      for (let i = 0; i < 80; i++) {
+        setTimeout(() => {
+          const piece = document.createElement('div');
+          piece.className = 'confetti-piece';
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+          const size = Math.random() * 10 + 4;
+          piece.style.width = `${size}px`;
+          const shapes = ['50%', '2px', '0'];
+          piece.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
+          piece.style.height = Math.random() > 0.5 ? `${size}px` : `${size * 0.4}px`;
+          piece.style.animationDuration = `${Math.random() * 2 + 2.5}s`;
+          piece.style.animationDelay = `${Math.random() * 0.3}s`;
+          piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+          container.appendChild(piece);
+          setTimeout(() => piece.remove(), 5000);
+        }, i * 25);
+      }
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      answers = {};
+      userName = '';
+      nameInput.value = '';
+      startBtn.disabled = true;
+      progressBar.style.width = '0%';
+      progressContainer.classList.remove('visible');
+
+      // Reset loading steps
+      document.querySelectorAll('.loading-step').forEach(step => {
+        step.classList.remove('active', 'done');
+        const stepNum = step.dataset.step;
+        step.querySelector('.loading-step-icon').textContent = parseInt(stepNum) + 1;
+      });
+
+      switchScreen(resultScreen, welcomeScreen);
+    }
+
+    // ============ INIT ============
+    nameInput.focus();
+
+    // Initialize Lucide icons on page load
+    lucide.createIcons();
+  </script>
+</body>
+</html>
