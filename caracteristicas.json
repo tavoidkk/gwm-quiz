@@ -1,0 +1,395 @@
+[
+  {
+    "modelo": "ORA 5",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Puerta de maletero eléctrica",
+          "Ventanas eléctricas en las 4 puertas",
+          "Asiento del pasajero eléctrico (4 posiciones) + memoria del conductor",
+          "9 parlantes",
+          "Crucero ADAPTATIVO (ACC) + paquete ADAS completo",
+          "Asientos delanteros ventilados y calefaccionados",
+          "Carga inalámbrica para celular + espejos plegables eléctricamente",
+          "Luces ambientales interiores",
+          "Techo panorámico (equipamiento opcional en esta versión)",
+          "6 Airbags",
+          "Modos de Conducción (Eco, Deportivo, Estándar y Nieve)",
+          "Aire Acondicionado automático de doble zona + Salida de aire acondicionado en segunda fila de asientos",
+          "Cámara Panorámica de 360°",
+          "Pantalla táctil de 14.6\" con Conectividad Apple CarPlay & Android Auto"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "HAVAL JOLION",
+    "versiones": [
+      {
+        "nombre": "CLASSIC",
+        "caracteristicas": [
+          "Aire acondicionado manual",
+          "Faros halógenos con DRL",
+          "Cámara de reversa",
+          "Cluster de instrumentos de colores de 3.5\"",
+          "Volante de poliuretano",
+          "Asientos de tela",
+          "4 Parlantes",
+          "2 Airbags",
+          "Pantalla Multimedia de 10.25\"",
+          "Conectividad con Apple CarPlay & Android Auto + Bluetooth"
+        ]
+      },
+      {
+        "nombre": "PREMIUM",
+        "caracteristicas": [
+          "Faros automáticos + limpiaparabrisas automáticos",
+          "Portaequipajes de techo",
+          "Aire acondicionado automáticos de doble zona con salida de aire a segunda fila de asientos",
+          "Faros LED",
+          "6 Airbags",
+          "Cámara panorámica de 360 grados",
+          "Volante de cuero",
+          "Cambio de levas en Volante",
+          "Instrumentos con combinación de colores de 7' LCD con brillo ajustable",
+          "Asientos de cuero",
+          "Asiento del conductor con ajuste eléctrico",
+          "6 Parlantes"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "HAVAL H6",
+    "versiones": [
+      {
+        "nombre": "PREMIUM 2WD",
+        "caracteristicas": [
+          "Modos de conducción (Estándar, Deportiva, ECO, Nieve)",
+          "Asientos delanteros con ajuste manual",
+          "Control de crucero",
+          "Carga inalámbrica 50W",
+          "Asientos de cuero",
+          "Cámara panorámica de 360°",
+          "Compatibilidad con Apple CarPlay & Android Auto",
+          "Faros delanteros y traseros LED",
+          "8 parlantes",
+          "Salida de aire acondicionado en segunda fila de asientos"
+        ]
+      },
+      {
+        "nombre": "LUXURY 4WD",
+        "caracteristicas": [
+          "Modos de conducción (Estándar, Deportiva, ECO, Nieve, Arena y Off-Road)",
+          "Puerta elevadiza de maletero eléctrica con sensor de apertura",
+          "Techo panorámico",
+          "Asientos delanteros con ajuste eléctrico",
+          "Asientos delanteros con ventilación y calefacción",
+          "Sensor de radar frontal",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Detección de somnolencia del conductor (en curvas)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Asistencia de estacionamiento automático (APA)",
+          "Pantalla emergente (HUD)",
+          "Retrovisor interno antideslumbrante electrónico",
+          "Luz ambiental atmosférica"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "HAVAL H9",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Bloqueo de diferencial electrónico del eje trasero",
+          "Modos de conducción",
+          "Asientos delanteros con ajuste eléctrico y soporte lumbar para conductor",
+          "Asientos delanteros con ventilación y función de masajes",
+          "Asientos de segunda fila con ventilación",
+          "Cámara panorámica de 360 grados",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Control de crucero todoterreno"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "HAVAL H7",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Modos de conducción (Estándar, Deportiva, ECO, Nieve, Barro, Arena, Hierba, Automático)",
+          "Bloqueo de diferencial electrónico del eje trasero",
+          "Techo panorámico",
+          "Levas de cambio en volante",
+          "Luz ambiental interior",
+          "6 Airbags",
+          "Cámara panorámica de 360 grados",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Holograma de información de vehículo en parabrisas delantero (HUD)"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "HAVAL H6 GT",
+    "versiones": [
+      {
+        "nombre": "PREMIUM",
+        "caracteristicas": [
+          "Modo de conducción (Estándar, Deportiva, ECO, Nieve, Pista)",
+          "Pantalla táctil de 10.25\"",
+          "Puerta elevadiza de maletero automática con cierre retardado y función de memoria",
+          "Techo panorámico",
+          "Cambio de levas en volante",
+          "6 airbags",
+          "Comando de voz",
+          "8 parlantes",
+          "Conectividad con Apple CarPlay & Android Auto",
+          "Aire acondicionado automático de doble zona + salida de aire acondicionado en segunda fila de asientos"
+        ]
+      },
+      {
+        "nombre": "LUXURY",
+        "caracteristicas": [
+          "Modo de conducción (Estándar, Deportiva, ECO, Nieve, Pista y Todoterreno)",
+          "Puerta elevadiza de maletero de apertura con el pie por sensor",
+          "Luz ambiental atmosférica",
+          "Cargador inalámbrico",
+          "Puerto de carga 12V en maletero",
+          "Asientos delanteros con ajuste eléctrico y ventilación",
+          "Pantalla emergente (HUD)",
+          "Pantalla táctil de 10.30\"",
+          "Sistema de Gestión de la Calidad del Aire (AQS)",
+          "Purificador de aire aniónico",
+          "Detección de sueño del conductor (en curvas)"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "TANK 300",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Bloqueo de diferencial delantero y trasero",
+          "Modo de dirección asistida ajustable (Sport, Comfort, Handiness)",
+          "Asiento del conductor eléctrico (8 posiciones) con masaje y soporte lumbar",
+          "Asientos delanteros ventilados",
+          "Cámara panorámica de 360°",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Conducción todoterreno (2H/4H/4L) con modos Estándar, Golpes, Rocas, Montaña y Barro + control de crucero todoterreno + giro tipo tanque (TAB)",
+          "Techo Corredizo",
+          "Gancho de remolque delantero y trasero",
+          "Faros delanteros y traseros LED",
+          "Luz ambiental interior (64 colores)",
+          "Cargador inalámbrico",
+          "Pantalla Multimedia de 12.3\" con Conectividad Apple CarPlay y Android Auto"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "TANK 400",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Tracción inteligente en las cuatro ruedas + bloqueo del diferencial central",
+          "Bloqueo del diferencial del eje trasero",
+          "Asiento del conductor con ajuste eléctrico 8 direcciones + memoria + bienvenida + masaje + soporte lumbar eléctrico",
+          "Asientos delanteros y segunda fila ventilados y con calefacción",
+          "Cámara de visión panorámica de 360° HD",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Control de crucero todoterreno + giro tipo tanque (TAB)",
+          "Pantalla desplegable (HUD) + Asistencia de estacionamiento automático (APA)",
+          "Pantalla multimedia de 16.2\" con Conectividad Apple CarPlay & Android Auto",
+          "Techo Panorámico",
+          "Cargador inalámbrico doble",
+          "Cambio de Levas en Volante",
+          "Aire Acondicionado automático de doble zona + Aire Acondicionado automático en segunda fila de asientos"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "TANK 500 HEV",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Motor E20NA+HEV de 16V",
+          "Cilindrada 2.0 Turbo + Motor Eléctrico",
+          "Regulación de emisiones Euro V",
+          "Potencia motor a combustión 241 / 5500-6000",
+          "Torque motor a combustión 380 / 1700-4000",
+          "Potencia combinada (HP) 341 combinado (combustión + eléctrico)",
+          "Torque combinado (NM) 648 combinado (combustión + eléctrico)",
+          "Consumo de gasolina mixto (Km/L) 10,4",
+          "Tracción inteligente en las cuatro ruedas + bloqueo del diferencial central",
+          "Cambios de levas en el volante",
+          "Bloqueo del diferencial del eje trasero",
+          "Escalón lateral eléctrico",
+          "Techo panorámico",
+          "Asientos delanteros con función de masajes, primera y segunda fila con calefacción y ventilación",
+          "Carga inalámbrica",
+          "Cámara panorámica de 360 grados",
+          "Asistencia de estacionamiento automático (APA)",
+          "Control de crucero adaptativo inteligente (IACC) + Control Crucero Todoterreno",
+          "Pantalla táctil de 14,6 pulgadas + 12 altavoces con amplificador integrado",
+          "Aire acondicionado de doble zona + Salida de aire en la segunda fila"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "POER COMMERCIAL",
+    "versiones": [
+      {
+        "nombre": "CLASSIC 2WD",
+        "caracteristicas": [
+          "Tracción en dos ruedas (2WD)",
+          "Asientos de tela",
+          "Asientos delanteros con ajuste manual",
+          "Volante de poliuretano",
+          "4 altavoces",
+          "Protector de cajón",
+          "Barra antivuelco trasera"
+        ]
+      },
+      {
+        "nombre": "CLASSIC 4WD",
+        "caracteristicas": [
+          "Tracción en las cuatro ruedas (4WD)",
+          "Selector de tracción (2H, 4H, 4L)",
+          "Asientos de tela",
+          "Asientos delanteros con ajuste manual",
+          "Volante de poliuretano",
+          "4 altavoces",
+          "Protector de cajón",
+          "Barra antivuelco trasera",
+          "Cámara de Reversa",
+          "Control de arranque y descenso en pendientes",
+          "6 bolsas de aire",
+          "Aire Acondicionado automático eléctrico"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "POER COMMERCIAL SINGLE CAB",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Dirección asistida hidráulica",
+          "Tablero de protección del chasis",
+          "Control de estabilidad (ESC/ESP) + control de tracción (ASR/TCS)",
+          "Sistema de asistencia de frenado hidráulico (HBA)",
+          "Control de arranque en pendiente (HHC)",
+          "Control de crucero (CCS)",
+          "Bolsas de aire frontales duales",
+          "Sistema TPMS",
+          "Radio AM/FM + Bluetooth + 2 Parlantes",
+          "Aire Acondicionado Manual",
+          "Ventanas eléctricas",
+          "Faros halógenos con DRL",
+          "Gancho de remolque trasero",
+          "Revestimiento de caja en aerosol"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "TANK 700",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Tracción inteligente en las cuatro ruedas + bloqueo del diferencial central",
+          "Bloqueo del diferencial delantero y trasero",
+          "Barra estabilizadora semiactiva",
+          "Asiento del conductor y pasajero eléctricos con memoria y bienvenida",
+          "Asientos delanteros y traseros con calefacción, ventilación y masaje",
+          "Cámara panorámica de 360° HD",
+          "Control de crucero adaptativo inteligente (IACC)",
+          "Sistema avanzado de asistencias al conductor (ADAS)",
+          "Pantalla desplegable (HUD) + Asistencia de estacionamiento automático (APA)",
+          "Pantalla táctil de 16.2\" + 12 Altavoces con amplificador integrado",
+          "Giro tipo tanque (TAB)",
+          "Cargador inalámbrico doble"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "POER PASSENGER",
+    "versiones": [
+      {
+        "nombre": "PREMIUM 2WD",
+        "caracteristicas": [
+          "Escalón lateral fijo",
+          "Control de Crucero",
+          "Modos de Conducción (Estándar, Económico, Deportivo)",
+          "6 bolsas de aire",
+          "Cámara de Reversa + Cámara de punto ciego",
+          "Cambio de Levas en Volante",
+          "Asientos de PVC",
+          "Pantalla táctil de 12.3\" + Conectividad con Apple CarPlay & Android Auto",
+          "6 Parlantes",
+          "Cargador inalámbrico",
+          "Comando de Voz",
+          "Aire Acondicionado automático + Salida de aire en segunda fila de asientos"
+        ]
+      },
+      {
+        "nombre": "LUXURY 4WD",
+        "caracteristicas": [
+          "Bloqueo de diferencial electrónico del eje trasero",
+          "Modos de conducción con opción 4L (todoterreno)",
+          "Asiento conductor y copiloto con ajuste eléctrico",
+          "Asientos de cuero",
+          "Cámara panorámica de 360° + sensores frontales y traseros",
+          "Control de Crucero Inteligente (IACC)",
+          "Sistema avanzado de asistencias a la conducción (ADAS)",
+          "Portaequipajes de techo + barra antivuelco trasera + escalón trasero del cajón",
+          "Vidrios eléctricos en todas las puertas (un solo toque)",
+          "Espejo retrovisor antideslumbrante eléctrico",
+          "Luz ambiental interior + luces para los pies",
+          "Regulación automática de intensidad de luces (HMA)",
+          "Detección de fatiga del conductor",
+          "Reposacabezas central trasero"
+        ]
+      }
+    ]
+  },
+  {
+    "modelo": "WINGLE 5",
+    "versiones": [
+      {
+        "nombre": "Única",
+        "caracteristicas": [
+          "Selector todoterreno (2H, 4H y 4L)",
+          "Barra antivuelco",
+          "Tratamiento especial anticorrosión",
+          "Aire Acondicionado Manual",
+          "Radio + USB + 4 Altavoces",
+          "Faros halógenos + Antiniebla delanteros y traseros",
+          "Ventanas eléctricas",
+          "Control Electrónico de Estabilidad + Sistema TPMS",
+          "Asientos de Cuero",
+          "2 bolsas de aire"
+        ]
+      }
+    ]
+  }
+]

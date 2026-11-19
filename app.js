@@ -18,7 +18,8 @@ const questions = [
       { icon: 'mountain', label: 'La montaña', desc: 'Aventura y naturaleza', value: 'mountain' },
       { icon: 'building-2', label: 'La ciudad', desc: 'Cultura y entretenimiento', value: 'city' },
       { icon: 'trees', label: 'El campo', desc: 'Paz y tranquilidad', value: 'countryside' },
-      { icon: 'anchor', label: 'Costa tranquila', desc: 'Relax junto al mar', value: 'coast' }
+      { icon: 'anchor', label: 'Costa tranquila', desc: 'Relax junto al mar', value: 'coast' },
+      { icon: 'droplets', label: 'El lago', desc: 'Agua dulce y calma', value: 'lake' }
     ]
   },
   {
@@ -31,7 +32,8 @@ const questions = [
       { icon: 'car', label: 'SUV', desc: 'Espacio y presencia', value: 'vt_suv' },
       { icon: 'truck', label: 'Pickup', desc: 'Fuerza y versatilidad', value: 'vt_pickup' },
       { icon: 'wind', label: 'Coupé', desc: 'Estilo y actitud', value: 'vt_coupe' },
-      { icon: 'building-2', label: 'Compacto', desc: 'Ágil para la ciudad', value: 'vt_compact' }
+      { icon: 'building-2', label: 'Compacto', desc: 'Ágil para la ciudad', value: 'vt_compact' },
+      { icon: 'zap', label: 'Híbrido', desc: 'Eficiencia y tecnología', value: 'vt_hybrid' }
     ]
   },
   {
@@ -45,7 +47,8 @@ const questions = [
       { icon: 'sun', label: 'Mediodía', desc: 'Pleno día de acción', value: 'noon' },
       { icon: 'sunset', label: 'Atardecer', desc: 'Horas doradas', value: 'sunset' },
       { icon: 'moon', label: 'Noche', desc: 'Luces y estrellas', value: 'night' },
-      { icon: 'calendar', label: 'Sin horario', desc: 'Cuando quiera', value: 'flexible' }
+      { icon: 'calendar', label: 'Sin horario', desc: 'Cuando quiera', value: 'flexible' },
+      { icon: 'cloud-sun', label: 'Madrugada', desc: 'Antes de que despierte todo', value: 'dawn' }
     ]
   },
   {
@@ -58,7 +61,8 @@ const questions = [
       { icon: 'building-2', label: 'Ciudad', desc: 'Calles y tránsito', value: 'terrain_city' },
       { icon: 'navigation', label: 'Autopista', desc: 'Largas distancias', value: 'terrain_highway' },
       { icon: 'mountain', label: 'Montaña', desc: 'Caminos de tierra', value: 'terrain_mountain' },
-      { icon: 'trees', label: 'Todo terreno', desc: 'Sin caminos', value: 'terrain_offroad' }
+      { icon: 'trees', label: 'Todo terreno', desc: 'Sin caminos', value: 'terrain_offroad' },
+      { icon: 'route', label: 'Mixto', desc: 'Un poco de todo', value: 'terrain_mixed' }
     ]
   },
   {
@@ -73,7 +77,8 @@ const questions = [
       { icon: 'radio', label: 'Electrónica', desc: 'Beats y ritmo', value: 'electronic' },
       { icon: 'headphones', label: 'Clásica / Lo-fi', desc: 'Calma y concentración', value: 'chill' },
       { icon: 'disc', label: 'Salsa / Merengue', desc: 'Ritmo caribeño', value: 'salsa' },
-      { icon: 'podcast', label: 'Podcast / Silencio', desc: 'Paz mental', value: 'silence' }
+      { icon: 'podcast', label: 'Podcast / Silencio', desc: 'Paz mental', value: 'silence' },
+      { icon: 'music-2', label: 'Indie / Alternativo', desc: 'Sonido propio', value: 'indie' }
     ]
   },
   {
@@ -87,7 +92,8 @@ const questions = [
       { icon: 'heart', label: 'En pareja', desc: 'A dos velocidades', value: 'couple' },
       { icon: 'users', label: 'En familia', desc: 'Todos a bordo', value: 'family' },
       { icon: 'party-popper', label: 'Con amigos', desc: 'Aventura en grupo', value: 'friends' },
-      { icon: 'dog', label: 'Con mascotas', desc: 'Ellos también viajan', value: 'pets' }
+      { icon: 'dog', label: 'Con mascotas', desc: 'Ellos también viajan', value: 'pets' },
+      { icon: 'briefcase', label: 'Con colegas', desc: 'Equipo de trabajo', value: 'coworkers' }
     ]
   },
   {
@@ -102,7 +108,8 @@ const questions = [
       { icon: 'armchair', label: 'Relax total', desc: 'Descansar y recargar', value: 'relax' },
       { icon: 'wrench', label: 'Proyectos', desc: 'Crear y construir', value: 'projects' },
       { icon: 'tent', label: 'Naturaleza', desc: 'Camping y senderismo', value: 'nature' },
-      { icon: 'shopping-bag', label: 'Compras / Salir', desc: 'Social y compras', value: 'shopping' }
+      { icon: 'shopping-bag', label: 'Compras / Salir', desc: 'Social y compras', value: 'shopping' },
+      { icon: 'map', label: 'Road trip', desc: 'Kilómetros y paisajes', value: 'roadtrip' }
     ]
   },
   {
@@ -116,7 +123,8 @@ const questions = [
       { icon: 'fish', label: 'Gourmet', desc: 'Sabores del mundo', value: 'gourmet' },
       { icon: 'salad', label: 'Saludable', desc: 'Fresco y nutritivo', value: 'healthy' },
       { icon: 'egg-fried', label: 'Casera', desc: 'Sabor de hogar', value: 'home' },
-      { icon: 'ice-cream-cone', label: 'Street food', desc: 'Comida callejera', value: 'streetfood' }
+      { icon: 'ice-cream-cone', label: 'Street food', desc: 'Comida callejera', value: 'streetfood' },
+      { icon: 'flame', label: 'Parrilla', desc: 'BBQ con amigos', value: 'bbq' }
     ]
   },
   {
@@ -124,11 +132,12 @@ const questions = [
     emoji: 'wallet',
     text: '¿Qué tan importante es el precio vs. el equipamiento?',
     hint: 'Tu prioridad al comprar',
-    singleCol: true,
+    singleCol: false,
     options: [
       { icon: 'piggy-bank', label: 'Precio primero', desc: 'Lo más accesible', value: 'budget_value' },
       { icon: 'scale', label: 'Equilibrio', desc: 'Calidad y precio', value: 'budget_balanced' },
-      { icon: 'crown', label: 'Equipo completo', desc: 'Lo mejor de todo', value: 'budget_premium' }
+      { icon: 'crown', label: 'Equipo completo', desc: 'Lo mejor de todo', value: 'budget_premium' },
+      { icon: 'cpu', label: 'Tecnología primero', desc: 'Innovación a bordo', value: 'budget_tech' }
     ]
   },
   {
@@ -143,7 +152,8 @@ const questions = [
       { icon: 'heart', label: 'Sociable', desc: 'El alma de la fiesta', value: 'social' },
       { icon: 'palette', label: 'Creativo/a', desc: 'Imaginación sin límites', value: 'creative' },
       { icon: 'crown', label: 'Líder', desc: 'Siempre al frente', value: 'leader' },
-      { icon: 'coffee', label: 'Tranquilo/a', desc: 'Paz y calma', value: 'calm' }
+      { icon: 'coffee', label: 'Tranquilo/a', desc: 'Paz y calma', value: 'calm' },
+      { icon: 'trophy', label: 'Competitivo/a', desc: 'Siempre a ganar', value: 'competitive' }
     ]
   }
 ];
@@ -436,8 +446,173 @@ const models = {
       casual: 1, gourmet: 2, healthy: 2, home: 1, streetfood: 0,
       adventurer: 3, analytical: 2, social: 0, creative: 0, leader: 3, calm: 2
     }
+  },
+  tank_400: {
+    name: 'TANK 400',
+    brand: 'TANK',
+    tagline: 'Aventura con carácter',
+    mainImage: 'public/tank-400-black-gwm-venezuela.webp',
+    colors: [
+      { name: 'Black', hex: '#1a1a1a', image: 'public/tank-400-black-gwm-venezuela.webp' },
+      { name: 'Gray', hex: '#808080', image: 'public/tank-400-gray-gwm-venezuela.webp' },
+      { name: 'Green', hex: '#2d5016', image: 'public/tank-400-green-gwm-venezuela.webp' },
+      { name: 'Silver', hex: '#C0C0C0', image: 'public/tank-400-silver-gwm-venezuela.webp' }
+    ],
+    description: 'El TANK 400 es el SUV off-road que combina presencia imponente con tecnología de última generación. Diseñado para quienes quieren salir de la ciudad sin renunciar al confort ni al estilo, es tu aliado para cada aventura.',
+    features: [
+      { icon: 'mountain', label: 'Off-road real' },
+      { icon: 'shield-check', label: 'Seguridad ADAS' },
+      { icon: 'crown', label: 'Confort premium' }
+    ],
+    personality: ['Aventurero', 'Audaz', 'Tecnológico', 'Independiente'],
+    scores: {
+      vt_suv: 3, vt_pickup: 2, vt_coupe: 0, vt_compact: 0, vt_hybrid: 2,
+      terrain_city: 0, terrain_highway: 1, terrain_mountain: 3, terrain_offroad: 3, terrain_mixed: 3,
+      budget_value: 0, budget_balanced: 2, budget_premium: 3, budget_tech: 3,
+      mountain: 3, beach: 1, city: 0, countryside: 3, coast: 1, lake: 3,
+      sunrise: 2, noon: 1, sunset: 2, night: 2, flexible: 1, dawn: 1,
+      rock: 3, urban: 0, electronic: 1, chill: 1, salsa: 0, silence: 2, indie: 2,
+      solo: 2, couple: 2, family: 2, friends: 2, pets: 2, coworkers: 0,
+      sport: 3, entertainment: 0, relax: 1, projects: 2, nature: 3, shopping: 0, roadtrip: 3,
+      casual: 2, gourmet: 1, healthy: 2, home: 1, streetfood: 1, bbq: 3,
+      adventurer: 3, analytical: 1, social: 0, creative: 1, leader: 2, calm: 1, competitive: 2
+    }
+  },
+  tank_700: {
+    name: 'TANK 700',
+    brand: 'TANK',
+    tagline: 'La cima del lujo off-road',
+    mainImage: 'public/tank-700-black-gwm-venezuela.webp',
+    colors: [
+      { name: 'Black', hex: '#1a1a1a', image: 'public/tank-700-black-gwm-venezuela.webp' },
+      { name: 'Grey', hex: '#707070', image: 'public/tank-700-grey-gwm-venezuela.webp' },
+      { name: 'Silver', hex: '#C0C0C0', image: 'public/tank-700-silver-gwm-venezuela.webp' }
+    ],
+    description: 'El TANK 700 es el máximo exponente del lujo off-road de GWM. Presencia monumental, tecnología de flagship y un refinamiento interior excepcional para quienes no aceptan concesiones entre aventura y elegancia.',
+    features: [
+      { icon: 'crown', label: 'Lujo flagship' },
+      { icon: 'mountain', label: 'Capacidad total' },
+      { icon: 'sparkles', label: 'Tecnología premium' }
+    ],
+    personality: ['Imponente', 'Exclusivo', 'Líder', 'Refinado'],
+    scores: {
+      vt_suv: 3, vt_pickup: 1, vt_coupe: 0, vt_compact: 0, vt_hybrid: 2,
+      terrain_city: 0, terrain_highway: 2, terrain_mountain: 3, terrain_offroad: 3, terrain_mixed: 3,
+      budget_value: 0, budget_balanced: 1, budget_premium: 3, budget_tech: 3,
+      mountain: 3, beach: 1, city: 1, countryside: 3, coast: 1, lake: 3,
+      sunrise: 2, noon: 1, sunset: 2, night: 2, flexible: 1, dawn: 1,
+      rock: 2, urban: 1, electronic: 1, chill: 2, salsa: 0, silence: 3, indie: 1,
+      solo: 1, couple: 3, family: 2, friends: 1, pets: 1, coworkers: 2,
+      sport: 2, entertainment: 1, relax: 3, projects: 1, nature: 2, shopping: 1, roadtrip: 3,
+      casual: 1, gourmet: 3, healthy: 2, home: 1, streetfood: 0, bbq: 2,
+      adventurer: 2, analytical: 2, social: 0, creative: 0, leader: 3, calm: 3, competitive: 2
+    }
+  },
+  poer_commercial: {
+    name: 'POER COMMERCIAL',
+    brand: 'POER',
+    tagline: 'Trabajo sin descanso',
+    mainImage: 'public/haval-poer-commercial-white-gwm-venezuela.webp',
+    colors: [
+      { name: 'White', hex: '#FFFFFF', image: 'public/haval-poer-commercial-white-gwm-venezuela.webp' },
+      { name: 'Silver', hex: '#C0C0C0', image: 'public/haval-poer-commercial-silver-gwm-venezuela.webp' }
+    ],
+    description: 'El POER COMMERCIAL es la pickup de trabajo que no se detiene. Caja amplia, chasis resistente y eficiencia comprobada para acompañarte en cada jornada, sin importar lo exigente que sea el terreno.',
+    features: [
+      { icon: 'dumbbell', label: 'Fuerza de trabajo' },
+      { icon: 'target', label: 'Carga versátil' },
+      { icon: 'bar-chart-3', label: 'Eficiencia real' }
+    ],
+    personality: ['Trabajador', 'Resistente', 'Práctico', 'Confiable'],
+    scores: {
+      vt_suv: 0, vt_pickup: 3, vt_coupe: 0, vt_compact: 0, vt_hybrid: 1,
+      terrain_city: 1, terrain_highway: 2, terrain_mountain: 2, terrain_offroad: 3, terrain_mixed: 3,
+      budget_value: 3, budget_balanced: 2, budget_premium: 0, budget_tech: 0,
+      mountain: 2, beach: 1, city: 1, countryside: 3, coast: 1, lake: 2,
+      sunrise: 3, noon: 2, sunset: 1, night: 1, flexible: 2, dawn: 3,
+      rock: 2, urban: 1, electronic: 0, chill: 1, salsa: 1, silence: 2, indie: 1,
+      solo: 2, couple: 1, family: 1, friends: 1, pets: 1, coworkers: 3,
+      sport: 1, entertainment: 0, relax: 0, projects: 3, nature: 2, shopping: 0, roadtrip: 3,
+      casual: 3, gourmet: 0, healthy: 1, home: 3, streetfood: 3, bbq: 3,
+      adventurer: 2, analytical: 2, social: 0, creative: 1, leader: 1, calm: 2, competitive: 2
+    }
+  },
+  poer_commercial_single_cab: {
+    name: 'POER COMMERCIAL SINGLE CAB',
+    brand: 'POER',
+    tagline: 'Pura capacidad de carga',
+    mainImage: 'public/poer-sb-white-gwm-venezuela.webp',
+    colors: [
+      { name: 'White', hex: '#FFFFFF', image: 'public/poer-sb-white-gwm-venezuela.webp' }
+    ],
+    description: 'El POER COMMERCIAL SINGLE CAB maximiza cada centímetro para el trabajo. Su cabina simple deja espacio a una caja más grande y resistente, ideal para quienes viven de hacer que las cosas sucedan.',
+    features: [
+      { icon: 'dumbbell', label: 'Máxima carga' },
+      { icon: 'target', label: 'Cabina simple' },
+      { icon: 'bar-chart-3', label: 'Costo eficiente' }
+    ],
+    personality: ['Trabajador', 'Eficiente', 'Resistente', 'Directo'],
+    scores: {
+      vt_suv: 0, vt_pickup: 3, vt_coupe: 0, vt_compact: 0, vt_hybrid: 0,
+      terrain_city: 1, terrain_highway: 2, terrain_mountain: 2, terrain_offroad: 3, terrain_mixed: 3,
+      budget_value: 3, budget_balanced: 2, budget_premium: 0, budget_tech: 0,
+      mountain: 2, beach: 1, city: 1, countryside: 3, coast: 1, lake: 2,
+      sunrise: 3, noon: 3, sunset: 1, night: 1, flexible: 2, dawn: 3,
+      rock: 2, urban: 0, electronic: 0, chill: 1, salsa: 0, silence: 2, indie: 0,
+      solo: 3, couple: 1, family: 0, friends: 1, pets: 0, coworkers: 3,
+      sport: 1, entertainment: 0, relax: 0, projects: 3, nature: 2, shopping: 0, roadtrip: 2,
+      casual: 3, gourmet: 0, healthy: 1, home: 3, streetfood: 3, bbq: 3,
+      adventurer: 1, analytical: 2, social: 0, creative: 1, leader: 1, calm: 2, competitive: 2
+    }
+  },
+  wingle_5: {
+    name: 'WINGLE 5',
+    brand: 'WINGLE',
+    tagline: 'Tu primera pickup',
+    mainImage: 'public/haval-wingle-5-white-gwm-venezuela.webp',
+    colors: [
+      { name: 'White', hex: '#FFFFFF', image: 'public/haval-wingle-5-white-gwm-venezuela.webp' }
+    ],
+    description: 'La WINGLE 5 es la pickup accesible que lo hace todo: te lleva al trabajo, carga lo que necesites y no le teme al barro. Robusta, sencilla y rendidora, es la compañera perfecta para empezar tu propia historia.',
+    features: [
+      { icon: 'dumbbell', label: 'Robusta y simple' },
+      { icon: 'piggy-bank', label: 'Precio accesible' },
+      { icon: 'target', label: 'Todo uso' }
+    ],
+    personality: ['Práctico', 'Trabajador', 'Rendidor', 'Accesible'],
+    scores: {
+      vt_suv: 0, vt_pickup: 3, vt_coupe: 0, vt_compact: 0, vt_hybrid: 1,
+      terrain_city: 1, terrain_highway: 2, terrain_mountain: 2, terrain_offroad: 3, terrain_mixed: 2,
+      budget_value: 3, budget_balanced: 2, budget_premium: 0, budget_tech: 0,
+      mountain: 2, beach: 1, city: 1, countryside: 3, coast: 1, lake: 2,
+      sunrise: 3, noon: 2, sunset: 1, night: 1, flexible: 2, dawn: 2,
+      rock: 2, urban: 1, electronic: 0, chill: 1, salsa: 1, silence: 1, indie: 1,
+      solo: 2, couple: 1, family: 1, friends: 2, pets: 1, coworkers: 2,
+      sport: 1, entertainment: 0, relax: 1, projects: 3, nature: 3, shopping: 0, roadtrip: 3,
+      casual: 3, gourmet: 0, healthy: 1, home: 3, streetfood: 2, bbq: 3,
+      adventurer: 2, analytical: 1, social: 1, creative: 1, leader: 1, calm: 2, competitive: 1
+    }
   }
 };
+
+// New answer options added to the quiz: extend the original score sheets.
+const EXTRA_SCORES = {
+  haval_h7: { lake: 3, vt_hybrid: 1, dawn: 2, terrain_mixed: 3, indie: 2, coworkers: 1, roadtrip: 3, bbq: 2, budget_tech: 2, competitive: 2 },
+  ora_5: { lake: 1, vt_hybrid: 3, dawn: 1, terrain_mixed: 1, indie: 2, coworkers: 2, roadtrip: 1, bbq: 1, budget_tech: 3, competitive: 1 },
+  tank_300: { lake: 2, vt_hybrid: 0, dawn: 2, terrain_mixed: 3, indie: 1, coworkers: 0, roadtrip: 3, bbq: 3, budget_tech: 1, competitive: 3 },
+  haval_h6gt: { lake: 1, vt_hybrid: 2, dawn: 2, terrain_mixed: 2, indie: 3, coworkers: 2, roadtrip: 2, bbq: 2, budget_tech: 3, competitive: 3 },
+  poer_passenger: { lake: 2, vt_hybrid: 1, dawn: 3, terrain_mixed: 3, indie: 1, coworkers: 3, roadtrip: 3, bbq: 3, budget_tech: 1, competitive: 2 },
+  haval_h6: { lake: 2, vt_hybrid: 2, dawn: 1, terrain_mixed: 2, indie: 2, coworkers: 2, roadtrip: 2, bbq: 2, budget_tech: 2, competitive: 1 },
+  haval_h9: { lake: 3, vt_hybrid: 1, dawn: 1, terrain_mixed: 2, indie: 1, coworkers: 1, roadtrip: 3, bbq: 2, budget_tech: 3, competitive: 2 },
+  haval_jolion: { lake: 1, vt_hybrid: 3, dawn: 1, terrain_mixed: 1, indie: 3, coworkers: 2, roadtrip: 3, bbq: 1, budget_tech: 3, competitive: 1 },
+  tank_500: { lake: 3, vt_hybrid: 1, dawn: 2, terrain_mixed: 3, indie: 1, coworkers: 1, roadtrip: 3, bbq: 3, budget_tech: 2, competitive: 2 }
+};
+
+Object.entries(EXTRA_SCORES).forEach(([key, extra]) => {
+  if (models[key]) Object.assign(models[key].scores, extra);
+});
+
+const MODEL_KEYS = Object.keys(models);
 
 const TIE_BREAK_ORDER = ['vehicleType', 'terrain', 'budget'];
 const STORAGE_KEY = 'gwm-quiz:session';
@@ -484,6 +659,9 @@ const questionScreen = $('questionScreen');
 const loadingScreen = $('loadingScreen');
 const resultScreen = $('resultScreen');
 
+const stageLayerA = $('stageLayerA');
+const stageLayerB = $('stageLayerB');
+
 const nameInput = $('nameInput');
 const startBtn = $('startBtn');
 const charCounter = $('charCounter');
@@ -501,18 +679,227 @@ const loadingText = $('loadingText');
 const loadingSteps = Array.from(document.querySelectorAll('.loading-step'));
 const resultIntro = $('resultIntro');
 const giantText = $('resultGiantText');
+const resultTagline = $('resultTagline');
 const carImg = $('resultCarImg');
 const carHero = $('resultCarHero');
 const swipeIndicator = $('resultSwipeIndicator');
 const colorBar = $('resultColorBar');
 const matchSection = $('resultMatchSection');
 const matchPercent = $('resultMatchPercent');
+const resultFeatures = $('resultFeatures');
 const description = $('resultDescription');
 const actions = $('resultActions');
 const restartBtn = $('restartBtn');
 const confettiContainer = $('confettiContainer');
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// ============ SHARED CINEMATIC STAGE ============
+const stageLayers = [stageLayerA, stageLayerB];
+let stageActiveIndex = 0;
+let stageCurrentSrc = '';
+
+function preloadStageImage(src) {
+  if (!src) return;
+  const img = new Image();
+  img.src = src;
+}
+
+function setStageVehicle(src, immediate) {
+  if (!src || src === stageCurrentSrc) return;
+  stageCurrentSrc = src;
+
+  const active = stageLayers[stageActiveIndex];
+  const nextIndex = stageActiveIndex === 0 ? 1 : 0;
+  const next = stageLayers[nextIndex];
+
+  preloadStageImage(src);
+  next.style.backgroundImage = `url("${src}")`;
+
+  if (immediate || reducedMotion.matches) {
+    next.style.transition = 'none';
+    active.classList.remove('is-visible');
+    next.classList.add('is-visible');
+    void next.offsetWidth;
+    next.style.transition = '';
+  } else {
+    void next.offsetWidth;
+    next.classList.add('is-visible');
+    active.classList.remove('is-visible');
+  }
+
+  stageActiveIndex = nextIndex;
+}
+
+// ============ CARACTERISTICAS DATA ============
+let featuresByModel = {};
+
+function normalizeModelName(name) {
+  return String(name || '').toUpperCase().replace(/\s+/g, ' ').trim();
+}
+
+function caracteristicasKey(name) {
+  const normalized = normalizeModelName(name);
+  return normalized === 'TANK 500' ? 'TANK 500 HEV' : normalized;
+}
+
+async function loadCaracteristicas() {
+  try {
+    const response = await fetch('caracteristicas.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('fetch failed');
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error('invalid data');
+    data.forEach((model) => {
+      if (!model || !model.modelo || !Array.isArray(model.versiones)) return;
+      const version = model.versiones[model.versiones.length - 1];
+      const list = version && Array.isArray(version.caracteristicas) ? version.caracteristicas : [];
+      featuresByModel[normalizeModelName(model.modelo)] = list;
+    });
+  } catch (err) {
+    featuresByModel = {};
+  }
+}
+
+const FEATURE_PRIORITY = [
+  [/airbag/i, 100],
+  [/adas|asistencias al conductor/i, 96],
+  [/360/i, 92],
+  [/diferencial/i, 90],
+  [/techo/i, 86],
+  [/ventilaci[óo]n|calefacc/i, 82],
+  [/hud|pantalla emergente/i, 78],
+  [/el[ée]ctric/i, 72],
+  [/carga inal[áa]mbrica/i, 68],
+  [/pantalla/i, 62],
+  [/parlante|audio/i, 56],
+  [/aire acondicionado/i, 50],
+  [/modos de conducci[óo]n/i, 46],
+  [/crucero/i, 44],
+  [/faros|luces|led/i, 40]
+];
+
+const FEATURE_ICON_RULES = [
+  [/airbag/i, 'shield'],
+  [/adas|asistencia|crucero|radar|somnolencia/i, 'shield-check'],
+  [/360|c[áa]mara/i, 'camera'],
+  [/techo/i, 'sun'],
+  [/asiento/i, 'armchair'],
+  [/hud|pantalla|cluster|instrumento|multimedia/i, 'monitor'],
+  [/carga inal[áa]mbrica|celular|carplay|conectividad|bluetooth|wifi/i, 'smartphone'],
+  [/diferencial|tracci[óo]n|4wd|off-road|todoterreno/i, 'mountain'],
+  [/parlante|audio/i, 'volume-2'],
+  [/aire acondicionado|clima/i, 'wind'],
+  [/maletero|puerta/i, 'door-open'],
+  [/luces|faros|led|ambiental/i, 'lightbulb'],
+  [/volante/i, 'circle'],
+  [/motor|hev|h[íi]brido|potencia/i, 'zap'],
+  [/modo/i, 'settings'],
+  [/llanta|rin/i, 'circle'],
+  [/freno/i, 'disc'],
+  [/suspensi[óo]n/i, 'waves'],
+  [/espejo/i, 'square'],
+  [/memoria/i, 'database'],
+  [/sensor/i, 'scan']
+];
+
+function featurePriority(text) {
+  for (const [pattern, weight] of FEATURE_PRIORITY) {
+    if (pattern.test(text)) return weight;
+  }
+  return 10;
+}
+
+function featureIcon(text) {
+  for (const [pattern, icon] of FEATURE_ICON_RULES) {
+    if (pattern.test(text)) return icon;
+  }
+  return 'check';
+}
+
+function shortenFeature(text) {
+  return String(text)
+    .replace(/\([^)]*\)/g, ' ')
+    .split(' + ')[0]
+    .replace(/\s+/g, ' ')
+    .replace(/[.,;:]$/, '')
+    .trim()
+    .slice(0, 40)
+    .trim();
+}
+
+const FEATURE_LABELS = [
+  [/airbag/i, () => 'Airbags'],
+  [/adas|asistencias al conductor/i, () => 'Asistencias ADAS'],
+  [/360/i, () => 'Cámara 360°'],
+  [/diferencial/i, () => 'Bloqueo de diferencial'],
+  [/techo panor/i, () => 'Techo panorámico'],
+  [/techo/i, () => 'Techo corredizo'],
+  [/ventilaci[óo]n|calefacc/i, () => 'Asientos climatizados'],
+  [/hud|pantalla emergente/i, () => 'Head-up display'],
+  [/carga inal[áa]mbrica/i, () => 'Carga inalámbrica'],
+  [/pantalla/i, () => 'Pantalla multimedia'],
+  [/parlante/i, () => 'Sistema de audio'],
+  [/aire acondicionado/i, () => 'Clima bizona'],
+  [/modos de conducci[óo]n/i, () => 'Modos de conducción'],
+  [/crucero/i, () => 'Crucero adaptativo'],
+  [/maletero|puerta elevadiza/i, () => 'Maletero eléctrico'],
+  [/luces ambientales|luz ambiental/i, () => 'Luz ambiental'],
+  [/faros/i, () => 'Faros LED'],
+  [/espejo/i, () => 'Espejos abatibles'],
+  [/sensor|radar/i, () => 'Sensores de radar'],
+  [/conectividad|carplay|bluetooth/i, () => 'Conectividad total'],
+  [/asiento/i, () => 'Asientos eléctricos']
+];
+
+function featureLabel(text) {
+  for (const [pattern, makeLabel] of FEATURE_LABELS) {
+    if (pattern.test(text)) return makeLabel(text);
+  }
+  return shortenFeature(text);
+}
+
+function getTopFeatures(model) {
+  const list = featuresByModel[caracteristicasKey(model.name)];
+
+  if (!Array.isArray(list) || !list.length) {
+    return (model.features || []).map((feature) => ({
+      text: feature.label,
+      icon: feature.icon
+    }));
+  }
+
+  return list
+    .map((text, index) => ({ text, index, priority: featurePriority(text) }))
+    .sort((a, b) => b.priority - a.priority || a.index - b.index)
+    .slice(0, 6)
+    .map((item) => ({
+      text: featureLabel(item.text),
+      icon: featureIcon(item.text)
+    }));
+}
+
+function renderFeatures(model) {
+  if (!resultFeatures) return;
+  resultFeatures.innerHTML = '';
+
+  getTopFeatures(model).forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'feature-card';
+
+    const icon = document.createElement('span');
+    icon.className = 'feature-icon';
+    icon.innerHTML = `<i data-lucide="${item.icon}" aria-hidden="true"></i>`;
+
+    const label = document.createElement('span');
+    label.className = 'feature-text';
+    label.textContent = item.text;
+
+    card.append(icon, label);
+    resultFeatures.appendChild(card);
+  });
+
+  refreshIcons();
+}
 
 // ============ HELPERS ============
 function refreshIcons() {
@@ -652,6 +1039,7 @@ function renderQuestion() {
   let gridClass = 'options-grid';
   if (q.singleCol) gridClass += ' single-col';
   else if (q.options.length >= 6) gridClass += ' three-col';
+  if (q.options.length >= 7) gridClass += ' options-grid--dense';
   optionsGrid.className = gridClass;
 
   q.options.forEach((opt, idx) => {
@@ -691,6 +1079,9 @@ function renderQuestion() {
   navArrows.style.display = isLast ? 'none' : 'flex';
   prevBtn.disabled = currentQuestion === 0;
   nextBtn.disabled = !answers[q.id];
+
+  const rotationModel = models[MODEL_KEYS[currentQuestion % MODEL_KEYS.length]];
+  if (rotationModel) setStageVehicle(rotationModel.colors[0].image);
 
   refreshIcons();
 }
@@ -810,6 +1201,15 @@ function showLoading() {
 
   switchScreen(questionScreen, loadingScreen);
 
+  let loadingVehicleIndex = 0;
+  const cycleLoadingVehicle = () => {
+    const modelKey = MODEL_KEYS[loadingVehicleIndex % MODEL_KEYS.length];
+    loadingVehicleIndex += 1;
+    if (models[modelKey]) setStageVehicle(models[modelKey].colors[0].image);
+    later(cycleLoadingVehicle, 900);
+  };
+  cycleLoadingVehicle();
+
   loadingSteps.forEach((step, index) => {
     later(() => {
       step.classList.add('active');
@@ -891,6 +1291,9 @@ function showResult() {
   resultIntro.textContent = userName ? `${userName}, tu modelo ideal es` : 'Tu modelo ideal es';
   giantText.textContent = result.name.toUpperCase();
   giantText.style.color = '';
+  resultTagline.textContent = result.tagline || '';
+
+  setStageVehicle(result.mainImage);
 
   carImg.src = result.mainImage;
   carImg.alt = `${result.name} en color ${activeColor.name}`;
@@ -899,6 +1302,7 @@ function showResult() {
 
   matchPercent.textContent = '0%';
   description.textContent = result.description || '';
+  renderFeatures(result);
 
   preloadImages(result.colors);
   buildColorBar(result.colors);
@@ -947,34 +1351,49 @@ function buildColorBar(colors) {
 }
 
 function revealResult(result) {
-  const elements = [resultIntro, giantText, carHero, colorBar, swipeIndicator, matchSection, description, actions];
+  const elements = [resultIntro, giantText, resultTagline, carHero, colorBar, swipeIndicator, matchSection, description, actions, resultFeatures];
+  const featureCards = resultFeatures ? Array.from(resultFeatures.querySelectorAll('.feature-card')) : [];
   elements.forEach((el) => {
+    if (!el) return;
     el.classList.remove('reveal-fade-up', 'reveal-pop', 'counting');
+    void el.offsetWidth;
+  });
+  featureCards.forEach((el) => {
+    el.classList.remove('reveal-fade-up');
     void el.offsetWidth;
   });
 
   // Reduced motion: show the full result immediately, no stagger, no confetti.
   if (reducedMotion.matches) {
-    elements.forEach((el) => el.classList.add('reveal-fade-up'));
+    elements.forEach((el) => {
+      if (el) el.classList.add('reveal-fade-up');
+    });
+    featureCards.forEach((el) => el.classList.add('reveal-fade-up'));
     animateCount(matchPercent, result.matchPercent);
     refreshIcons();
     return;
   }
 
   later(() => resultIntro.classList.add('reveal-fade-up'), 0);
-  later(() => giantText.classList.add('reveal-pop'), 200);
-  later(() => carHero.classList.add('reveal-pop'), 400);
+  later(() => giantText.classList.add('reveal-pop'), 160);
+  later(() => resultTagline.classList.add('reveal-fade-up'), 320);
+  later(() => carHero.classList.add('reveal-pop'), 380);
+
+  featureCards.forEach((el, index) => {
+    later(() => el.classList.add('reveal-fade-up'), 480 + index * 70);
+  });
+
   later(() => {
     launchConfetti();
     swipeIndicator.classList.add('reveal-fade-up');
-  }, 600);
-  later(() => colorBar.classList.add('reveal-fade-up'), 800);
+  }, 700);
+  later(() => colorBar.classList.add('reveal-fade-up'), 820);
   later(() => {
     matchSection.classList.add('reveal-fade-up');
     animateCount(matchPercent, result.matchPercent);
-  }, 1100);
-  later(() => description.classList.add('reveal-fade-up'), 1250);
-  later(() => actions.classList.add('reveal-fade-up'), 1400);
+  }, 980);
+  later(() => description.classList.add('reveal-fade-up'), 1120);
+  later(() => actions.classList.add('reveal-fade-up'), 1260);
   later(() => refreshIcons(), MAX_REVEAL_WAIT);
 }
 
@@ -1019,6 +1438,7 @@ function selectColor(index, element) {
     carImg.src = color.image;
     carImg.alt = `${currentResultData.name} en color ${color.name}`;
     carImg.style.opacity = '1';
+    setStageVehicle(color.image);
   }, 200);
 
   const squares = colorBar.querySelectorAll('.result-color-square');
@@ -1163,11 +1583,16 @@ function restartQuiz() {
   resetLoadingSteps();
   loadingText.textContent = loadingTexts[0];
 
-  [resultIntro, giantText, carHero, colorBar, swipeIndicator, matchSection, description, actions]
-    .forEach((el) => el.classList.remove('reveal-fade-up', 'reveal-pop', 'counting'));
+  [resultIntro, giantText, resultTagline, carHero, colorBar, swipeIndicator, matchSection, description, actions, resultFeatures]
+    .forEach((el) => {
+      if (el) el.classList.remove('reveal-fade-up', 'reveal-pop', 'counting');
+    });
+  if (resultFeatures) resultFeatures.innerHTML = '';
 
   matchPercent.textContent = '0%';
   clearState();
+
+  setStageVehicle('public/haval-h7-hamilton-white.webp');
 
   switchScreen(resultScreen, welcomeScreen, () => {
     nameInput.focus();
@@ -1176,6 +1601,8 @@ function restartQuiz() {
 
 // ============ INIT ============
 document.body.dataset.screen = 'welcomeScreen';
+setStageVehicle('public/haval-h7-hamilton-white.webp', true);
+loadCaracteristicas();
 updateNameState();
 refreshIcons();
 restoreState();
