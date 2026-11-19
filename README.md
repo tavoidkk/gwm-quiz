@@ -30,9 +30,16 @@ Luego visita `http://localhost:8000`.
 
 ```
 .
-├── index.html   # Estructura, estilos, datos del quiz y lógica
-└── public/      # Imágenes de vehículos y logo
+├── index.html        # Estructura y pantallas
+├── styles.css        # Estilos, animaciones y reglas táctiles
+├── app.js            # Datos del quiz, scoring y lógica
+├── README.kiosk.md   # Guía de despliegue en tablet de stand
+└── public/           # Imágenes de vehículos y logo
 ```
+
+## Versión kiosco
+
+La rama `feature/kiosk-experience` adapta la experiencia a tablets táctiles de stand: 10 preguntas, targets de 48 px, sin dependencia de hover, confeti y revelado dramático del resultado, y persistencia de sesión. Consulta [README.kiosk.md](README.kiosk.md).
 
 ## Créditos
 
