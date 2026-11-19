@@ -722,40 +722,35 @@ function setStageVehicle(src, immediate) {
     stageCleanupTimer = null;
   }
 
-  // Only the current frame may stay visible while the new one dissolves on top.
-  stageLayers.forEach((layer) => {
-    if (layer !== active) {
-      layer.classList.remove('is-visible');
-      layer.style.zIndex = '';
-    }
-  });
-
   if (immediate || reducedMotion.matches) {
     next.style.transition = 'none';
+    active.style.transition = 'none';
     active.classList.remove('is-visible');
+    next.classList.add('is-visible');
+    void next.offsetWidth;
+    active.style.transition = '';
+    next.style.transition = '';
     active.style.zIndex = '';
+    next.style.zIndex = '';
+  } else {
+    // Dissolve the old frame away over a fully-opaque new frame. This is a
+    // true linear crossfade: no double exposure, no brightness dip, and the
+    // outgoing vehicle starts leaving immediately instead of lingering.
+    next.style.transition = 'none';
+    next.style.zIndex = '1';
+    active.style.zIndex = '2';
     next.classList.add('is-visible');
     void next.offsetWidth;
     next.style.transition = '';
-  } else {
-    // Cross-dissolve: the incoming frame fades in above the outgoing one,
-    // so the scene never dips to black between vehicles.
-    next.style.zIndex = '2';
-    active.style.zIndex = '1';
-    void next.offsetWidth;
-    next.classList.add('is-visible');
+
+    active.classList.remove('is-visible');
 
     stageCleanupTimer = setTimeout(() => {
-      // The incoming frame is fully opaque by now, so hide the outgoing one
-      // instantly instead of leaving it to fade again on top of the new scene.
-      active.style.transition = 'none';
-      active.classList.remove('is-visible');
-      void active.offsetWidth;
-      active.style.transition = '';
+      // The old frame is fully transparent by now; only restore stacking.
       active.style.zIndex = '';
       next.style.zIndex = '';
       stageCleanupTimer = null;
-    }, 1750);
+    }, 1150);
   }
 
   stageActiveIndex = nextIndex;
@@ -1507,72 +1502,46 @@ function setupSwipe() {
   if (swipeSetupDone) return;
   swipeSetupDone = true;
 
+  // One pointer = one gesture. Pointer events avoid the duplicate touch +
+  // compatibility-mouse sequence that made the color jump two at a time.
   let startX = 0;
   let startY = 0;
-  let tracking = false;
+  let activePointer = null;
   let lastSwipeAt = 0;
-  let lastTouchAt = 0;
 
-  const start = (x, y) => {
-    startX = x;
-    startY = y;
-    tracking = true;
+  const cancel = (event) => {
+    if (event.pointerId !== activePointer) return;
+    activePointer = null;
   };
 
-  const end = (x, y) => {
-    if (!tracking) return;
-    tracking = false;
+  carHero.addEventListener('pointerdown', (event) => {
+    if (!event.isPrimary) return;
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    activePointer = event.pointerId;
+    startX = event.clientX;
+    startY = event.clientY;
+    try { carHero.setPointerCapture(event.pointerId); } catch (_) {}
+  });
 
-    // Debounce: avoids double advances when a device reports the gesture twice
-    const now = performance.now();
-    if (now - lastSwipeAt < 380) return;
+  carHero.addEventListener('pointerup', (event) => {
+    if (activePointer !== event.pointerId) return;
+    activePointer = null;
+    try { carHero.releasePointerCapture(event.pointerId); } catch (_) {}
 
-    const diffX = x - startX;
-    const diffY = y - startY;
-
+    const diffX = event.clientX - startX;
+    const diffY = event.clientY - startY;
     if (Math.abs(diffX) < 46) return;
     if (Math.abs(diffX) < Math.abs(diffY) * 1.4) return;
 
+    // Guard only against an accidental second gesture fired in the same frame.
+    const now = performance.now();
+    if (now - lastSwipeAt < 350) return;
     lastSwipeAt = now;
     swipeColor(diffX > 0 ? -1 : 1);
-  };
-
-  carHero.addEventListener('touchstart', (event) => {
-    if (event.touches.length !== 1) {
-      tracking = false;
-      return;
-    }
-    lastTouchAt = performance.now();
-    start(event.touches[0].clientX, event.touches[0].clientY);
-  }, { passive: true });
-
-  carHero.addEventListener('touchend', (event) => {
-    if (event.changedTouches.length !== 1) {
-      tracking = false;
-      return;
-    }
-    lastTouchAt = performance.now();
-    end(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-  }, { passive: true });
-
-  carHero.addEventListener('touchcancel', () => {
-    tracking = false;
-  }, { passive: true });
-
-  carHero.addEventListener('mousedown', (event) => {
-    if (event.button !== 0) return;
-    // Ignore the synthetic mouse events browsers emit after a touch gesture.
-    if (performance.now() - lastTouchAt < 900) return;
-    start(event.clientX, event.clientY);
   });
 
-  window.addEventListener('mouseup', (event) => {
-    if (performance.now() - lastTouchAt < 900) {
-      tracking = false;
-      return;
-    }
-    end(event.clientX, event.clientY);
-  });
+  carHero.addEventListener('pointercancel', cancel);
+  carHero.addEventListener('lostpointercapture', cancel);
 }
 
 // ============ CONFETTI / SPARKLES ============
