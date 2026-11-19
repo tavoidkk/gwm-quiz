@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
-  <meta name="theme-color" content="#D6202A">
+  <meta name="theme-color" content="#07080a">
   <meta name="description" content="Quiz interactivo de GWM Venezuela: descubre el modelo que va contigo.">
   <title>GWM Venezuela - Encuentra tu modelo ideal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,13 @@
   <!-- MAIN APP -->
   <div class="app-container" id="app">
 
+    <!-- SHARED CINEMATIC VEHICLE STAGE -->
+    <div class="stage" aria-hidden="true">
+      <div class="stage-layer is-visible" id="stageLayerA"></div>
+      <div class="stage-layer" id="stageLayerB"></div>
+      <div class="stage-scrim"></div>
+    </div>
+
     <!-- WELCOME SCREEN -->
     <div class="screen screen--cinematic active" id="welcomeScreen">
       <div class="welcome-stage">
@@ -40,10 +47,6 @@
         <div class="welcome-topline">
           <span class="welcome-eyebrow">GWM Venezuela</span>
           <span class="welcome-tag">Experiencia interactiva</span>
-        </div>
-
-        <div class="welcome-visual" aria-hidden="true">
-          <img class="welcome-car" src="public/haval-h7-hamilton-white.webp" alt="">
         </div>
 
         <div class="welcome-bottom">
@@ -87,7 +90,7 @@
     </div>
 
     <!-- QUESTION SCREEN -->
-    <div class="screen" id="questionScreen">
+    <div class="screen screen--scene" id="questionScreen">
       <div class="question-screen screen-inner">
         <div class="question-progress">
           <span class="question-counter" id="questionCounter"></span>
@@ -116,7 +119,7 @@
     </div>
 
     <!-- LOADING SCREEN -->
-    <div class="screen" id="loadingScreen">
+    <div class="screen screen--scene" id="loadingScreen">
       <div class="loading-screen screen-inner">
         <div class="loading-visual">
           <div class="loading-ring loading-ring-1"></div>
@@ -156,31 +159,43 @@
     </div>
 
     <!-- RESULT SCREEN -->
-    <div class="screen screen--result" id="resultScreen">
-      <div class="result-screen-minimal">
-        <div class="result-hero">
+    <div class="screen screen--result screen--scene" id="resultScreen">
+      <div class="result-layout">
+        <div class="result-head">
           <p class="result-intro" id="resultIntro">Tu modelo ideal es</p>
           <h1 class="result-giant-text" id="resultGiantText"></h1>
+          <p class="result-tagline" id="resultTagline"></p>
         </div>
-        <div class="result-car-hero" id="resultCarHero">
-          <img id="resultCarImg" src="public/haval-h7-hamilton-white.webp" alt="Vehículo recomendado">
-          <div class="result-swipe-indicator" id="resultSwipeIndicator">1 / 5</div>
-        </div>
-        <div class="result-color-bar" id="resultColorBar" role="group" aria-label="Colores disponibles"></div>
-        <div class="result-match-section" id="resultMatchSection">
-          <span class="result-match-percent" id="resultMatchPercent">0%</span>
-          <span class="result-match-label">compatibilidad</span>
-        </div>
-        <p class="result-description" id="resultDescription"></p>
-        <div class="result-actions" id="resultActions">
-          <button class="btn btn-outline" id="restartBtn" type="button">
-            <i data-lucide="rotate-ccw" aria-hidden="true"></i>
-            Volver a intentar
-          </button>
-          <a href="https://www.gwm-ve.com/es" target="_blank" rel="noopener" class="btn btn-primary">
-            <i data-lucide="external-link" aria-hidden="true"></i>
-            Visitar GWM Venezuela
-          </a>
+
+        <div class="result-grid">
+          <section class="result-features" id="resultFeatures" aria-label="Características destacadas"></section>
+
+          <div class="result-car-hero" id="resultCarHero">
+            <img id="resultCarImg" src="public/haval-h7-hamilton-white.webp" alt="Vehículo recomendado">
+            <div class="result-swipe-indicator" id="resultSwipeIndicator">1 / 5</div>
+          </div>
+
+          <aside class="result-side">
+            <div class="result-color-bar" id="resultColorBar" role="group" aria-label="Colores disponibles"></div>
+
+            <div class="result-match-section" id="resultMatchSection">
+              <span class="result-match-percent" id="resultMatchPercent">0%</span>
+              <span class="result-match-label">compatibilidad</span>
+            </div>
+
+            <p class="result-description" id="resultDescription"></p>
+
+            <div class="result-actions" id="resultActions">
+              <button class="btn btn-outline" id="restartBtn" type="button">
+                <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+                Volver a intentar
+              </button>
+              <a href="https://www.gwm-ve.com/es" target="_blank" rel="noopener" class="btn btn-primary">
+                <i data-lucide="external-link" aria-hidden="true"></i>
+                Visitar GWM Venezuela
+              </a>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
@@ -190,9 +205,7 @@
   <div class="confetti-container" id="confettiContainer" aria-hidden="true"></div>
 
   <!-- FOOTER -->
-  <div class="footer">
-    Hecho con <i data-lucide="heart" class="footer-heart" aria-hidden="true"></i> para <a href="https://www.gwm-ve.com/es" target="_blank" rel="noopener">GWM Venezuela</a> — Hello, Tomorrow
-  </div>
+  <div class="footer">GWM Experience Urbe</div>
 
   <script src="app.js"></script>
 </body>
