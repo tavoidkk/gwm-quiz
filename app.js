@@ -592,6 +592,7 @@ function switchScreen(from, to, onDone) {
     from.classList.remove('active', 'exiting');
     to.classList.add('active');
     to.scrollTop = 0;
+    document.body.dataset.screen = to.id;
     if (onDone) onDone();
   }, 300);
 }
@@ -887,7 +888,7 @@ function showResult() {
 
   const activeColor = result.colors[0];
 
-  resultIntro.textContent = userName ? `Tu modelo ideal es, ${userName}` : 'Tu modelo ideal es';
+  resultIntro.textContent = userName ? `${userName}, tu modelo ideal es` : 'Tu modelo ideal es';
   giantText.textContent = result.name.toUpperCase();
   giantText.style.color = '';
 
@@ -1174,6 +1175,7 @@ function restartQuiz() {
 }
 
 // ============ INIT ============
+document.body.dataset.screen = 'welcomeScreen';
 updateNameState();
 refreshIcons();
 restoreState();
