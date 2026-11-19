@@ -698,6 +698,7 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const stageLayers = [stageLayerA, stageLayerB];
 let stageActiveIndex = 0;
 let stageCurrentSrc = '';
+let stageCleanupTimer = null;
 
 function preloadStageImage(src) {
   if (!src) return;
@@ -716,16 +717,45 @@ function setStageVehicle(src, immediate) {
   preloadStageImage(src);
   next.style.backgroundImage = `url("${src}")`;
 
+  if (stageCleanupTimer) {
+    clearTimeout(stageCleanupTimer);
+    stageCleanupTimer = null;
+  }
+
+  // Only the current frame may stay visible while the new one dissolves on top.
+  stageLayers.forEach((layer) => {
+    if (layer !== active) {
+      layer.classList.remove('is-visible');
+      layer.style.zIndex = '';
+    }
+  });
+
   if (immediate || reducedMotion.matches) {
     next.style.transition = 'none';
     active.classList.remove('is-visible');
+    active.style.zIndex = '';
     next.classList.add('is-visible');
     void next.offsetWidth;
     next.style.transition = '';
   } else {
+    // Cross-dissolve: the incoming frame fades in above the outgoing one,
+    // so the scene never dips to black between vehicles.
+    next.style.zIndex = '2';
+    active.style.zIndex = '1';
     void next.offsetWidth;
     next.classList.add('is-visible');
-    active.classList.remove('is-visible');
+
+    stageCleanupTimer = setTimeout(() => {
+      // The incoming frame is fully opaque by now, so hide the outgoing one
+      // instantly instead of leaving it to fade again on top of the new scene.
+      active.style.transition = 'none';
+      active.classList.remove('is-visible');
+      void active.offsetWidth;
+      active.style.transition = '';
+      active.style.zIndex = '';
+      next.style.zIndex = '';
+      stageCleanupTimer = null;
+    }, 1750);
   }
 
   stageActiveIndex = nextIndex;
@@ -1206,7 +1236,7 @@ function showLoading() {
     const modelKey = MODEL_KEYS[loadingVehicleIndex % MODEL_KEYS.length];
     loadingVehicleIndex += 1;
     if (models[modelKey]) setStageVehicle(models[modelKey].colors[0].image);
-    later(cycleLoadingVehicle, 900);
+    later(cycleLoadingVehicle, 2000);
   };
   cycleLoadingVehicle();
 
@@ -1479,22 +1509,70 @@ function setupSwipe() {
 
   let startX = 0;
   let startY = 0;
+  let tracking = false;
+  let lastSwipeAt = 0;
+  let lastTouchAt = 0;
+
+  const start = (x, y) => {
+    startX = x;
+    startY = y;
+    tracking = true;
+  };
+
+  const end = (x, y) => {
+    if (!tracking) return;
+    tracking = false;
+
+    // Debounce: avoids double advances when a device reports the gesture twice
+    const now = performance.now();
+    if (now - lastSwipeAt < 380) return;
+
+    const diffX = x - startX;
+    const diffY = y - startY;
+
+    if (Math.abs(diffX) < 46) return;
+    if (Math.abs(diffX) < Math.abs(diffY) * 1.4) return;
+
+    lastSwipeAt = now;
+    swipeColor(diffX > 0 ? -1 : 1);
+  };
 
   carHero.addEventListener('touchstart', (event) => {
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
+    if (event.touches.length !== 1) {
+      tracking = false;
+      return;
+    }
+    lastTouchAt = performance.now();
+    start(event.touches[0].clientX, event.touches[0].clientY);
   }, { passive: true });
 
   carHero.addEventListener('touchend', (event) => {
-    const endX = event.changedTouches[0].clientX;
-    const endY = event.changedTouches[0].clientY;
-    const diffX = endX - startX;
-    const diffY = endY - startY;
-
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-      swipeColor(diffX > 0 ? -1 : 1);
+    if (event.changedTouches.length !== 1) {
+      tracking = false;
+      return;
     }
+    lastTouchAt = performance.now();
+    end(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
   }, { passive: true });
+
+  carHero.addEventListener('touchcancel', () => {
+    tracking = false;
+  }, { passive: true });
+
+  carHero.addEventListener('mousedown', (event) => {
+    if (event.button !== 0) return;
+    // Ignore the synthetic mouse events browsers emit after a touch gesture.
+    if (performance.now() - lastTouchAt < 900) return;
+    start(event.clientX, event.clientY);
+  });
+
+  window.addEventListener('mouseup', (event) => {
+    if (performance.now() - lastTouchAt < 900) {
+      tracking = false;
+      return;
+    }
+    end(event.clientX, event.clientY);
+  });
 }
 
 // ============ CONFETTI / SPARKLES ============

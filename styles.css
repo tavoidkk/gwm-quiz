@@ -2402,25 +2402,29 @@ body {
   opacity: 0;
   transform: scale(1.08);
   filter: saturate(1.06) contrast(1.02);
-  transition: opacity 1.15s var(--ease-cinema), transform 3.2s var(--ease-cinema), filter 0.9s ease;
+  transition:
+    opacity 1.7s cubic-bezier(0.37, 0, 0.18, 1),
+    transform 4.5s cubic-bezier(0.37, 0, 0.18, 1),
+    filter 0.9s ease;
   will-change: opacity, transform;
 }
 
 .stage-layer.is-visible {
   opacity: 1;
   transform: scale(1);
-  animation: stageDrift 28s ease-in-out infinite alternate;
+  animation: stageDrift 34s ease-in-out infinite alternate;
 }
 
 @keyframes stageDrift {
   from { transform: scale(1) translate3d(0, 0, 0); }
-  to   { transform: scale(1.05) translate3d(0, -1.4%, 0); }
+  to   { transform: scale(1.045) translate3d(0, -1.2%, 0); }
 }
 
 .stage-scrim {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  /* Above both crossfade layers so a vehicle never brightens mid-dissolve */
+  z-index: 3;
   background:
     radial-gradient(55% 55% at 80% 12%, rgba(214, 32, 42, 0.26), transparent 68%),
     radial-gradient(46% 46% at 6% 94%, rgba(255, 71, 87, 0.14), transparent 70%),
@@ -2440,9 +2444,13 @@ body {
 
 /* Interior screens need a deeper scrim so text stays readable over bright studio shots */
 body[data-screen="questionScreen"] .stage-layer,
-body[data-screen="loadingScreen"] .stage-layer,
-body[data-screen="resultScreen"] .stage-layer {
+body[data-screen="loadingScreen"] .stage-layer {
   filter: brightness(0.64) saturate(1.12) contrast(1.05);
+}
+
+/* The result keeps the matching car in the scene but pushed further back */
+body[data-screen="resultScreen"] .stage-layer {
+  filter: brightness(0.46) saturate(1.08) contrast(1.06);
 }
 
 body[data-screen="questionScreen"] .stage-scrim,
@@ -2662,11 +2670,12 @@ body[data-screen="resultScreen"] .stage-scrim {
 }
 
 .result-car-hero img {
-  width: 100%;
+  width: 106%;
+  max-width: 106%;
   height: auto;
-  max-height: clamp(160px, 30vh, 350px);
+  max-height: clamp(180px, 40vh, 420px);
   object-fit: contain;
-  margin: 0 auto;
+  margin: 0;
   filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.65));
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -2685,11 +2694,11 @@ body[data-screen="resultScreen"] .stage-scrim {
 .result-features {
   grid-column: 1;
   grid-row: 2;
-  --card-size: clamp(52px, 8.5vh, 84px);
+  --card-size: clamp(62px, 10vh, 100px);
   display: grid;
   grid-template-columns: repeat(2, var(--card-size));
   grid-auto-rows: var(--card-size);
-  gap: clamp(6px, 1.1vh, 12px);
+  gap: clamp(7px, 1.3vh, 14px);
   justify-content: center;
   align-content: center;
   min-height: 0;
@@ -2698,13 +2707,13 @@ body[data-screen="resultScreen"] .stage-scrim {
 .feature-card {
   width: var(--card-size);
   height: var(--card-size);
-  border-radius: 16px;
-  padding: 8px 6px;
+  border-radius: 17px;
+  padding: 9px 7px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 6px;
   text-align: center;
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035));
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -2715,8 +2724,8 @@ body[data-screen="resultScreen"] .stage-scrim {
 }
 
 .feature-icon {
-  width: clamp(18px, 2.4vh, 26px);
-  height: clamp(18px, 2.4vh, 26px);
+  width: clamp(20px, 2.8vh, 30px);
+  height: clamp(20px, 2.8vh, 30px);
   color: #ff5b63;
   display: inline-flex;
   align-items: center;
@@ -2731,8 +2740,8 @@ body[data-screen="resultScreen"] .stage-scrim {
 }
 
 .feature-text {
-  font-size: clamp(0.54rem, 1.12vh, 0.68rem);
-  line-height: 1.2;
+  font-size: clamp(0.64rem, 1.35vh, 0.84rem);
+  line-height: 1.25;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
   display: -webkit-box;
@@ -2800,12 +2809,12 @@ body[data-screen="resultScreen"] .stage-scrim {
 .result-description {
   margin: 0;
   max-width: 100%;
-  font-size: clamp(0.7rem, 1.55vh, 0.92rem);
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.74);
+  font-size: clamp(0.8rem, 1.7vh, 1rem);
+  line-height: 1.46;
+  color: rgba(255, 255, 255, 0.78);
   opacity: 0;
   display: -webkit-box;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2842,9 +2851,10 @@ body[data-screen="resultScreen"] .stage-scrim {
 /* Landscape: features left · vehicle center · description right */
 @media (orientation: landscape) {
   .result-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1.05fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.85fr) minmax(0, 1fr);
     grid-template-rows: minmax(0, 1fr);
     align-items: center;
+    gap: clamp(8px, 1.8vh, 20px) clamp(10px, 1.8vw, 24px);
   }
 
   .result-car-hero {
@@ -2859,21 +2869,38 @@ body[data-screen="resultScreen"] .stage-scrim {
   .result-features {
     grid-column: 1;
     grid-row: 1;
-    --card-size: clamp(56px, 12vh, 96px);
-    grid-template-columns: repeat(3, var(--card-size));
-    grid-template-rows: repeat(2, var(--card-size));
+    --card-size: clamp(58px, 13.5vh, 112px);
+    grid-template-columns: repeat(2, var(--card-size));
+    grid-template-rows: repeat(3, var(--card-size));
   }
 
   .result-side {
     grid-column: 3;
     grid-row: 1;
+    gap: 6px;
+  }
+
+  .result-description {
+    font-size: clamp(0.8rem, 1.7vh, 0.96rem);
+    line-height: 1.45;
+    -webkit-line-clamp: 4;
+  }
+
+  .result-actions .btn {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 0.68rem;
+  }
+
+  .result-match-percent {
+    font-size: clamp(1.5rem, 4.2vh, 2.5rem);
   }
 }
 
 /* Portrait: 5-line description and tighter action row */
 @media (orientation: portrait) and (min-width: 521px) {
   .result-description {
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
   }
 
   .result-actions {
@@ -2894,12 +2921,19 @@ body[data-screen="resultScreen"] .stage-scrim {
 
   .result-description {
     -webkit-line-clamp: 2;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     line-height: 1.4;
   }
 
   .result-features {
-    --card-size: clamp(48px, 9.5vh, 70px);
+    --card-size: clamp(46px, 10.5vh, 74px);
+    grid-template-columns: repeat(3, var(--card-size));
+    grid-template-rows: repeat(2, var(--card-size));
+  }
+
+  .feature-text {
+    font-size: 0.56rem;
+    line-height: 1.18;
   }
 
   .result-match-percent {
@@ -2934,7 +2968,7 @@ body[data-screen="resultScreen"] .stage-scrim {
   }
 
   .result-features {
-    --card-size: clamp(56px, 13.5vw, 86px);
+    --card-size: clamp(64px, 16vw, 96px);
   }
 
   .result-giant-text {
@@ -2947,8 +2981,9 @@ body[data-screen="resultScreen"] .stage-scrim {
   }
 
   .result-description {
-    -webkit-line-clamp: 5;
-    font-size: 0.7rem;
+    -webkit-line-clamp: 4;
+    font-size: 0.8rem;
+    line-height: 1.44;
   }
 
   .result-actions {
